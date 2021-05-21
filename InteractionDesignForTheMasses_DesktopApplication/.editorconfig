@@ -1,0 +1,11 @@
+# Main editor configuration file.
+root = true
+
+# Tab indentation configuration for all file types.
+[*]
+indent_style = tab
+indent_size = tab
+tab_width = 4
+
+# Header template.
+file_header_template = Interaction Design For The Masses Project.\n\nCopyright (C) "Mnemoscene LTD". All Rights Reserved.\n

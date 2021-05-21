@@ -1,0 +1,18 @@
+-----------------------------------------------------------------------------
+
+Project:
+		Interaction Design For The Masses Project.
+
+Copyright (C) "Mnemoscene LTD".
+All Rights Reserved.
+
+File:
+		${FileName}
+
+Date:
+		${Date}
+
+Description: 
+	
+
+-----------------------------------------------------------------------------

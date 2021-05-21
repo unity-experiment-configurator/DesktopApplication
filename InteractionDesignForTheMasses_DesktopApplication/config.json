@@ -1,0 +1,8 @@
+{
+	"ExperimentType":"FindAmongDistractors"
+	"DistractorTypes":["Banana","Car","Apple","Plane","Cow"],
+	"TargetColor":"Gruish",
+	"TargetType":"TargetIsChair",
+	"TargetSound":"Smash",
+	"DistractorCount":50
+}
