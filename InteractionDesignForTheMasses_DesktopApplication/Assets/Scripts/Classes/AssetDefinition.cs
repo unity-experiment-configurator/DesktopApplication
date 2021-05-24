@@ -27,20 +27,26 @@ using UnityEngine;
 public class AssetDefinition<InputObjectType>
 {
 	[Header("Name-To-Object Association")]
-	public string AssetName;			// Asset name to be associated with object.
-	public InputObjectType AssetObject;	// Asset object to be associated with name.
+	public List<string> AssetNameList;		// Asset names to be associated with the object.
+	public InputObjectType AssetObject;		// Asset object to be associated with the name list.
 
 	// Constructor with all default values;
 	public AssetDefinition()
 	{
-		AssetName = "";
+		AssetNameList = null;
 		AssetObject = default;
 	}
 
 	// Constructor with inputs for all values;
-	public AssetDefinition(string InputAssetName, InputObjectType InputAssetObject)
+	public AssetDefinition(List<string> InputAssetNameList, InputObjectType InputAssetObject)
 	{
-		AssetName = InputAssetName;
+		AssetNameList = InputAssetNameList;
 		AssetObject = InputAssetObject;
+	}
+
+	// Method to sort the associated name list.
+	public void SortNameList()
+	{
+		AssetNameList.Sort();
 	}
 }

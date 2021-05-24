@@ -45,8 +45,8 @@ public class ReadConfigFile
 		{
 			ConfigurationFileFullPath = ConfigurationFilePathOveride + "/" + ConfigurationFileName + "." + ConfigurationFileFormat;
 		}
-		
-		if (Directory.Exists(ConfigurationFileFullPath))
+
+		if (File.Exists(ConfigurationFileFullPath))
 		{
 			SceneConstructionData OutputSceneConstructionData = new SceneConstructionData();
 			OutputSceneConstructionData.ReadJSONFile(ConfigurationFileFullPath);

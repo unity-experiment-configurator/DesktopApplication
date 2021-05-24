@@ -1,8 +1,8 @@
 {
-	"ExperimentType":"FindAmongDistractors"
-	"DistractorTypes":["Banana","Car","Apple","Plane","Cow"],
-	"TargetColor":"Gruish",
+	"ExperimentType":"FindAmongDistractors",
+	"DistractorTypes":["Banana","Cone","Car","Apple","Ball","Plane","Cow","cube"],
+	"TargetColour":"Gruish",
 	"TargetType":"TargetIsChair",
 	"TargetSound":"Smash",
-	"DistractorCount":50
+	"DistractorCount":5
 }
