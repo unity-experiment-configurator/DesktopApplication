@@ -1,0 +1,93 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &928345499168031373
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 928345499168031375}
+  - component: {fileID: 928345499168031372}
+  m_Layer: 0
+  m_Name: CreateObjectsInArea_Prefab_Var1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &928345499168031375
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 928345499168031373}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &928345499168031372
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 928345499168031373}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7463e564616a948f6b9a2effeb712fc8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ChildCreationTotal: 10
+  CollisionCheckerStartIDNumber: 1
+  AddMeshColliderToChild: 1
+  ChildColliderIsConvex: 1
+  AddRigidBodyToChild: 1
+  ChildCollisionMode: 1
+  ChildScaleIsUniform: 0
+  AddCollisionCheckerToChild: 1
+  AddObjectAttributesToChild: 1
+  ChildObjectAttributes:
+    Name: 
+    IDNumber: 0
+    RoleTag: 4
+    TriggerEnabled: 0
+    TriggerByAll: 0
+    TargetTriggerIDNumberList: 
+    TriggerActiveEvent:
+      m_PersistentCalls:
+        m_Calls: []
+    TriggerInactiveEvent:
+      m_PersistentCalls:
+        m_Calls: []
+  LocalTransformations: 1
+  MinTransformations:
+    Position: {x: 0, y: 0, z: 0}
+    Rotation: {x: 0, y: 0, z: 0}
+    Scale: {x: 1, y: 1, z: 1}
+    Origin: 1
+  MaxTransformations:
+    Position: {x: 0, y: 0, z: 0}
+    Rotation: {x: 0, y: 0, z: 0}
+    Scale: {x: 1, y: 1, z: 1}
+    Origin: 1
+  FloorLevelHeight: 0
+  KeepChildAboveFloor: 1
+  VisualiseAreaBoundsGizmo: 1
+  ChildObjectSamplesList: []
+  ChildMaterialSamplesList: []
+  CurrentObjectIsParent: 1
+  ExternalParentObject: {fileID: 0}
+  CreatedChildObjectList: []
+  ChildCountMaxAttempts: 250
+  ChildCountCurrentAttempts: 0
+  HideUntilFinalisation: 1
+  KillMomentumAfterCreation: 1
+  InitialMomentumKilled: 0
+  KillMomentumFrameCount: 500
+  CurrentKillMomentumFrame: 0

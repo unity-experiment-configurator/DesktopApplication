@@ -1,0 +1,35 @@
+{
+  "updatedAt": "2021-06-10T10:10:11.862Z",
+  "title": "test 7",
+  "username": "edsilv",
+  "description": "<p>asdfasdf</p>",
+  "type": "TwoTablesWithDistractors",
+  "slug": "test-7",
+  "published": true,
+  "options": {
+    "distractorCount": 1,
+    "distractorColors": [
+      "red"
+    ],
+    "targetColor": "red",
+    "distractorSize": 0.5,
+    "globalSound": "beep",
+    "distractorModels": [
+      "cone"
+    ],
+    "targetModel": "cone",
+    "targetSize": 0.5,
+    "targetSound": "beep"
+  },
+  "instructions": "<p>asdfasdf</p>",
+  "heartCount": 0,
+  "duplicationEnabled": true,
+  "createdAt": "2021-06-10T10:09:46.999Z",
+  "uid": "ZAjPxKk1W5RqaWlXRUqwlaLETCF2",
+  "url": "https://unity-experiment-configurator.vercel.app/edsilv/test-7",
+  "UXF": {
+    "trials_per_block": 10,
+    "catch_trials_per_block": 3,
+    "delay_time": 0.6
+  }
+}

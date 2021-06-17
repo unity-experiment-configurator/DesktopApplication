@@ -1,0 +1,41 @@
+{
+  "slug": "test-experiment",
+  "updatedAt": "2021-06-10T13:00:10.636Z",
+  "title": "Test Experiment",
+  "heartCount": 0,
+  "username": "stelios",
+  "instructions": "<p>FDANJNJDSNJNDASFJNNAAFVESDFDASDGVADASFGA</p>",
+  "published": true,
+  "type": "TwoTablesWithDistractors",
+  "uid": "IWJThh3D2BanCDgw48TDzanJAkf1",
+  "options": {
+    "distractorSize": 0.7,
+    "globalSound": "boop",
+    "targetColor": "green",
+    "distractorModels": [
+      "cone",
+      "sphere",
+      "torus",
+      "cylinder",
+      "cube"
+    ],
+    "targetSize": 0.6,
+    "distractorColors": [
+      "yellow",
+      "blue",
+      "red"
+    ],
+    "targetSound": "beep",
+    "targetModel": "sphere",
+    "distractorCount": 25
+  },
+  "duplicationEnabled": true,
+  "createdAt": "2021-06-10T12:55:54.092Z",
+  "description": "<p>SKSDKNMSKKSSFAMASMFMAMMFSMMFAMMS\t\t</p>",
+  "url": "https://unity-experiment-configurator.vercel.app/stelios/test-experiment",
+  "UXF": {
+    "trials_per_block": 10,
+    "catch_trials_per_block": 3,
+    "delay_time": 0.6
+  }
+}

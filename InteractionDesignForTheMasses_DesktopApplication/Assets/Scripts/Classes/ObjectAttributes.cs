@@ -29,31 +29,44 @@ public class ObjectAttributes
 {
 	[Header("Object ID")]
 	public string Name;		// The object's "nice" name.
-	public int IDNumber;	// The object's ID number. This should be preferably unique.
+	public uint IDNumber;	// The object's ID number. This should be preferably unique.
 
 	[Header("Object Role")]
 	public ObjectRoleTag RoleTag;	// The object's role tag to be applied.
 
-	[Header("Object Appearance")]
-	public bool Visible;				// Condition for if the object's mesh should be visible.
-	public ObjectShapeTag ShapeTag;		// The object's shape tag to be applied.
-	public ObjectColourTag ColourTag;	// The object's colour tag to be applied.
-
 	[Header("Object Trigger Behaviour")]
 	public bool TriggerEnabled;					// Condition for if the object should behave as a trigger.
+	public bool TriggerByAll;					// Condition for if the trigger should be activated by any object.
 	public List<int> TargetTriggerIDNumberList;	// List of valid ID numbers that will activate the trigger once within the object's collider.
-	public UnityEvent TriggerActivationEvent;	// The event that will be executed once the trigger gets activated.
+	public UnityEvent TriggerActiveEvent;		// The event that will be executed once the trigger gets activated.
+	public UnityEvent TriggerInactiveEvent;		// The event that will be executed once the trigger gets deactivated.
 
-	[Header("Object Physics Attributes")]
-	public float Mass;				// Mass of the object to be used if a rigidbody compnent is added.
-	public float MaxVelocity;		// Max velocity the object can achieve.
-	public bool CollisionEnabled;	// Condition for if the object should have its collision component enabled. If the TriggerEnable condition is enabled
-	public bool PhysicsEnabled;		// Condition for if the object should have an active rigidbody component.
-	public bool KinematicEnabled;	// Condition for if the object should be a kinematic rigidbody. This will work only if there is an active rigidbody component.
-	public bool GravityEnabled;		// Condition for if the object should be affected by gravity. This will work only if there is an active rigidbody component.
-	public bool GrabingEnabled;		// Condition for if the object should be able to be manipulated by the user at runtime by grabbing the object.
+	public bool TriggerActive { get; private set; }
 
-	[Header("Object Setup Options")]
-	public bool ResetParentOrigin;	// Condition for if the parent object should be reset back to origin transformations.
-	public bool ClearAllChildren;	// Condition for if all chidren should be destroyed before proceeding with the creation of new ones.
+	// Constructor with all default values.
+	public ObjectAttributes()
+	{
+		Name = "";
+		IDNumber = 0;
+		RoleTag = ObjectRoleTag.None;
+		TriggerEnabled = false;
+		TargetTriggerIDNumberList = new List<int>();
+		TriggerActiveEvent = null;
+		TriggerInactiveEvent = null;
+		TriggerActive = false;
+	}
+
+	// Method to execute all actions for when the object trigger is active.
+	public void ExecuteActiveTriggerActions()
+	{
+		TriggerActive = true;
+		if (TriggerActiveEvent != null) { TriggerActiveEvent.Invoke(); }
+	}
+
+	// Method to execute all actions for when the object trigger is inactive.
+	public void ExecuteInactiveTriggerActions()
+	{
+		TriggerActive = false;
+		if (TriggerActiveEvent != null) { TriggerInactiveEvent.Invoke(); }
+	}
 }

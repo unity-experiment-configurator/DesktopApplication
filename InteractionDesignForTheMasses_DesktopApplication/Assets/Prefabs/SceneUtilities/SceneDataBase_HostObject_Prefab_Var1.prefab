@@ -1,0 +1,166 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &8563921077136849017
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8563921077136849019}
+  - component: {fileID: 8563921077136849018}
+  - component: {fileID: 5907998747293740408}
+  m_Layer: 0
+  m_Name: SceneDataBase_HostObject_Prefab_Var1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8563921077136849019
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8563921077136849017}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8563921077136849018
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8563921077136849017}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 71559f414030e47699969ca7d9b97cb6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ReadConfigurationFileOnEnable: 1
+  ParseAllConfigurationDataOnEnable: 1
+  GetDefinedExperimentOnEnable: 1
+  SetCurrentSessionCountersOnEnable: 1
+  LoadedSceneConstructionData:
+    RawConfigurationData: 
+    ConfigurationDataLineList: []
+    type: 
+    title: 
+    username: 
+    uid: 
+    createdAt: 
+    updatedAt: 
+    sessionBlockCount: 0
+    blockTrialCount: 0
+    description: 
+    instructions: 
+  AssociatedExperimentScene:
+    Scene: 
+  CurrentSessionBlockCount: 0
+  CurrentBlockTrialCount: 0
+  SceneDefinitionList:
+    List:
+    - AssetNameList:
+      - Default
+      - Fallback
+      AssetObject:
+        Scene: Default_Scene_Var1
+    - AssetNameList:
+      - Start
+      AssetObject:
+        Scene: Start_Scene_Var1
+    - AssetNameList:
+      - FindAmongDistractors
+      - Find Among Distractors
+      - Find_Among_Distractors
+      - TwoTablesWithDistractors
+      - Two Tables With Distractors
+      - Two_Tables_With_Distractors
+      AssetObject:
+        Scene: FindAmongDistractors_Scene_Var1
+  ModelDefinitionList:
+    List:
+    - AssetNameList:
+      - Cone
+      - Spike
+      AssetObject: {fileID: 919132149155446097, guid: 87cebdb683db5594ea84d4db795588df, type: 3}
+    - AssetNameList:
+      - Cube
+      - Box
+      AssetObject: {fileID: 919132149155446097, guid: 4cbbe25a311c55848adaa50ee54fac8e, type: 3}
+    - AssetNameList:
+      - Sphere
+      - Ball
+      AssetObject: {fileID: 919132149155446097, guid: b88be64485e2bb946b11ec1cb252eb6d, type: 3}
+    - AssetNameList:
+      - Torus
+      - Donut
+      AssetObject: {fileID: 919132149155446097, guid: 4a7c030a21dd8b548a8f2dc59adab5ed, type: 3}
+    - AssetNameList:
+      - Cylinder
+      - Tube
+      AssetObject: {fileID: 919132149155446097, guid: 99296db156c286a42ac50a4d170d7ce2, type: 3}
+  MaterialDefinitionList:
+    List:
+    - AssetNameList:
+      - Red
+      AssetObject: {fileID: 2100000, guid: aaed7f6eb3f814bcb89a844d8fa5561b, type: 2}
+    - AssetNameList:
+      - Green
+      AssetObject: {fileID: 2100000, guid: 8244b1056228840ebafce401a7a1eb29, type: 2}
+    - AssetNameList:
+      - Blue
+      AssetObject: {fileID: 2100000, guid: 9c5d910e0ca2045a69222970a8991b93, type: 2}
+    - AssetNameList:
+      - Cyan
+      AssetObject: {fileID: 2100000, guid: 2dd404342b512447785872b2d986ce64, type: 2}
+    - AssetNameList:
+      - Magenta
+      AssetObject: {fileID: 2100000, guid: f7a05e80cfbc84f5cb735b8e29b021be, type: 2}
+    - AssetNameList:
+      - Yellow
+      AssetObject: {fileID: 2100000, guid: d693222910b6147c2a017c84569f8e35, type: 2}
+    - AssetNameList:
+      - White
+      AssetObject: {fileID: 2100000, guid: abca6530311ab4490ae2fb8ee4cbb67f, type: 2}
+    - AssetNameList:
+      - Grey
+      AssetObject: {fileID: 2100000, guid: c72c2e0cedbb7465eb09352fc41941d1, type: 2}
+    - AssetNameList:
+      - Black
+      AssetObject: {fileID: 2100000, guid: 98f9d343d73a34dafa4c2eabf2c84064, type: 2}
+  SoundDefinitionList:
+    List:
+    - AssetNameList:
+      - Beep
+      AssetObject: {fileID: 8300000, guid: 44b029c9288835049b3dbe8cb533e387, type: 3}
+    - AssetNameList:
+      - Boop
+      AssetObject: {fileID: 8300000, guid: 5badfa54b2b45e040912427cc9a355b3, type: 3}
+    - AssetNameList:
+      - Ambient
+      AssetObject: {fileID: 8300000, guid: 35b32e6487c95a64592c3e668c222bcc, type: 3}
+    - AssetNameList:
+      - CrowdChatter
+      - Crowd
+      AssetObject: {fileID: 8300000, guid: 02d2f10783bb3a349bf4378526121b50, type: 3}
+--- !u!114 &5907998747293740408
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8563921077136849017}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 97573da13c286454fb010c80c3981dd5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PreserveDuringSceneChanges: 1

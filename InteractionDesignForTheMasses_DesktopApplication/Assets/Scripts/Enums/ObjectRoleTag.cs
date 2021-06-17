@@ -18,14 +18,11 @@
 //
 // -----------------------------------------------------------------------------
 
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
 public enum ObjectRoleTag
 {
+	Assistant,
 	Distractor,
 	Environment,
 	Target,
-	Trigger,
+	None,
 }

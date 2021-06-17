@@ -27,164 +27,68 @@ using UnityEngine.SceneManagement;
 [Serializable]
 public class SceneDataBase : MonoBehaviour
 {
-	[Header("General Options")]
-	public bool PreserveDataBase = true;
-
 	[Header("Configuration File Options")]
-	public bool ReadConfigurationFileOnStart = false;
-	public bool RemoveAllInvalidDefinitionsOnStart = false;
-	public bool LoadDefinedExperimentOnStart = false;
+	public bool ReadConfigurationFileOnEnable = true;
+	public bool ParseAllConfigurationDataOnEnable = true;
+	public bool GetDefinedExperimentOnEnable = true;
+	public bool SetCurrentSessionCountersOnEnable = true;
 	
 	[Header("Scene Construction Data")]
-	public SceneConstructionData ConstructionData;
+	public SceneConstructionData LoadedSceneConstructionData;
+
+	[Header("Scene Association")]
+	public SceneObjectContainer AssociatedExperimentScene;
+
+	[Header("Session Settings")]
+	public int CurrentSessionBlockCount;
+	public int CurrentBlockTrialCount;
 
 	[Header("Scene List")]
-	public List<AssetDefinition<SceneObjectContainer>> SceneDefinitionList;
+	public AssetDefinitionList<SceneObjectContainer> SceneDefinitionList;
 
 	[Header("Model List")]
-	public List<AssetDefinition<GameObject>> ModelDefinitionList;
+	public AssetDefinitionList<GameObject> ModelDefinitionList;
 
 	[Header("Material List")]
-	public List<AssetDefinition<Material>> MaterialDefinitionList;
+	public AssetDefinitionList<Material> MaterialDefinitionList;
 
 	[Header("Sound List")]
-	public List<AssetDefinition<AudioClip>> SoundDefinitionList;
+	public AssetDefinitionList<AudioClip> SoundDefinitionList;
+
+	public bool SceneDataBaseEstablished { get; private set; }
+
+	void OnEnable()
+	{
+		if (ReadConfigurationFileOnEnable) ReadConfiguration();
+		if (ParseAllConfigurationDataOnEnable) LoadedSceneConstructionData.ParseAll();
+		if (GetDefinedExperimentOnEnable) GetDefinedExperimentScene();
+		if (SetCurrentSessionCountersOnEnable) SetCurrentSessionCounters();
+	}
 
 	// Method to read the config.json file located in the currently same directory the application is in.
 	public void ReadConfiguration()
 	{
-		ConstructionData = ReadConfigFile.Read();
+		SceneDataBaseEstablished = false;
+		LoadedSceneConstructionData = Configuration.Read();
+		SceneDataBaseEstablished = true;
 	}
 
+	// Method to find a scene definition with the same associated name as in the experiment type.
+	public void GetDefinedExperimentScene()
+	{
+		AssociatedExperimentScene = SceneDefinitionList.GetDefinedObjectByName(LoadedSceneConstructionData.type);
+	}
+
+	// Method to retrive and setup the current session's counters.
+	public void SetCurrentSessionCounters()
+	{
+		CurrentSessionBlockCount = LoadedSceneConstructionData.sessionBlockCount;
+		CurrentBlockTrialCount = LoadedSceneConstructionData.blockTrialCount;
+	}
+
+	// Method to confirm the experiment scene from the imported data is defined and load it.
 	public void LoadExperimentScene()
 	{
-		foreach (AssetDefinition<SceneObjectContainer> CurrentSceneDefinition in SceneDefinitionList)
-		{
-			foreach (string CurrentValidSceneName in CurrentSceneDefinition.AssetNameList)
-			{
-				if (CurrentValidSceneName == ConstructionData.ExperimentType)
-				{
-					SceneManager.LoadScene(CurrentSceneDefinition.AssetObject.Scene, LoadSceneMode.Single);
-					break;
-				}
-			}
-		}
-	}
-
-	// Method to examine all distractor object entries and remove the ones that do not match any of the available model objects.
-	public void RemoveInvalidDistractorTypes(bool SetToDefaultOnRemove = false, bool IgnoreCase = false)
-	{
-		List<int> InvaliObjectIndexList = new List<int>();
-		int CurrentSuggestedObjectIndex = 0;
-
-		foreach (string CurrentSuggestedTypeName in ConstructionData.DistractorTypes)
-		{
-			bool MatchFound = false;
-
-			foreach (AssetDefinition<GameObject> CurrentModelDefinition in ModelDefinitionList)
-			{
-				foreach (string CurrentValidModelName in CurrentModelDefinition.AssetNameList)
-				{
-					if (IgnoreCase)
-					{
-						if (CurrentSuggestedTypeName.Equals(CurrentValidModelName, StringComparison.InvariantCultureIgnoreCase))
-						{
-							MatchFound = true;
-							break;
-						}
-					}
-					else
-					{
-						if (CurrentSuggestedTypeName.Equals(CurrentValidModelName))
-						{
-							MatchFound = true;
-							break;
-						}
-					}
-				}
-
-				if (MatchFound) { break; }
-			}
-
-			if (!MatchFound)
-			{
-				InvaliObjectIndexList.Add(CurrentSuggestedObjectIndex);
-			}
-
-			CurrentSuggestedObjectIndex++;
-		}
-
-		if (InvaliObjectIndexList.Count > 0)
-		{
-			for (int InvalidItemIndexCount = InvaliObjectIndexList.Count - 1; InvalidItemIndexCount >= 0; InvalidItemIndexCount--)
-			{
-				if (SetToDefaultOnRemove)
-				{
-					ConstructionData.DistractorTypes[InvaliObjectIndexList[InvalidItemIndexCount]] = "Default";
-				}
-				else
-				{
-					ConstructionData.DistractorTypes.RemoveAt(InvaliObjectIndexList[InvalidItemIndexCount]);
-				}
-			}
-		}
-	}
-
-	public void RemoveInvalidObjectDefinition<InputObjectType>(List<AssetDefinition<InputObjectType>> InputObjectDefinitionList, ref string InputDefinition, bool SetToDefaultOnRemove = false)
-	{
-		bool MatchFound = false;
-
-		foreach (AssetDefinition<InputObjectType> CurrentObjectDefinition in InputObjectDefinitionList)
-		{
-			foreach (string CurrentValidObjectName in CurrentObjectDefinition.AssetNameList)
-			{
-				if (InputDefinition == CurrentValidObjectName)
-				{
-					MatchFound = true;
-					break;
-				}
-			}
-
-			if (MatchFound) { break; }
-		}
-
-		if (!MatchFound)
-		{
-			if (SetToDefaultOnRemove)
-			{
-				InputDefinition = "Default";
-			}
-			else
-			{
-				InputDefinition = "";
-			}
-		}
-	}
-
-	void Start()
-	{
-		if (PreserveDataBase)
-		{
-			DontDestroyOnLoad(gameObject);
-		}
-		
-		if (ReadConfigurationFileOnStart)
-		{
-			ReadConfiguration();
-		}
-
-		if (RemoveAllInvalidDefinitionsOnStart)
-		{
-			RemoveInvalidDistractorTypes(true, true);
-			RemoveInvalidObjectDefinition(SceneDefinitionList, ref ConstructionData.ExperimentType, true);
-			RemoveInvalidObjectDefinition(MaterialDefinitionList, ref ConstructionData.TargetColour, true);
-			RemoveInvalidObjectDefinition(ModelDefinitionList, ref ConstructionData.TargetType, true);
-			RemoveInvalidObjectDefinition(SoundDefinitionList, ref ConstructionData.TargetSound, true);
-		}
-
-		if (LoadDefinedExperimentOnStart)
-		{
-			LoadExperimentScene();
-		}
+		AssociatedExperimentScene.LoadScene();
 	}
 }

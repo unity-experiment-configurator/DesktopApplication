@@ -20,86 +20,107 @@
 
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class ObjectAttributesContainer : MonoBehaviour
 {
-	public ObjectAttributes Attributes;	// Object's attributes.
-	
-	// Method that runs all the parent object setup process.
-	public void SetupParent()
+	[Header("Object Attributes")]
+	public ObjectAttributes ContainedObjectAttributes;  // The current object's attributes.
+
+	[Header("Object Setup Options")]
+	public bool RunSetupOnEnable;				// Condition for if the setup process should run on enable.
+	public bool RunSetupOnStart;				// Condition for if the setup process should run on start.
+	public bool RunSetupOnUpdate;				// Condition for if the setup process should run on update.
+	public NiceNameOrigin NiceNameOriginOption;	// Option that will determine where the nice name will originate from.
+	public bool ResetGameObjectTransformations;	// Condition for if the current game object should be reset back to origin transformations.
+	public bool ClearAllChildren;				// Condition for if all chidren should be destroyed before proceeding with the creation of new ones.
+
+	void OnCollisionEnter(Collision CurrentCollisionData)
 	{
-		if (Attributes.ResetParentOrigin)
-		{
-			transform.position = new Vector3();
-			transform.rotation = new Quaternion();
-			transform.localScale = new Vector3(1f, 1f, 1f);
-		}
+		EvaluateTrigger(CurrentCollisionData.collider.gameObject);
 	}
 
-	// Method that runs all the child object setup process.
-	public void SetupChild()
+	void OnTriggerEnter(Collider CurrentTriggerData)
 	{
-		if (Attributes.ClearAllChildren)
+		EvaluateTrigger(CurrentTriggerData.gameObject);
+	}
+
+	void OnEnable()
+	{
+		if (RunSetupOnEnable) { RunSetup(); }
+	}
+
+	void Start()
+	{
+		if (RunSetupOnStart) { RunSetup(); }
+	}
+
+	void Update()
+	{
+		if (RunSetupOnUpdate) { RunSetup(); }
+	}
+
+	void EvaluateTrigger(GameObject OtherObject)
+	{
+		if (ContainedObjectAttributes.TriggerEnabled)
 		{
-			foreach (Transform CurrentTransform in gameObject.GetComponentsInChildren<Transform>())
+			if (ContainedObjectAttributes.TriggerByAll)
 			{
-				if (CurrentTransform.gameObject != this)
+				ContainedObjectAttributes.ExecuteActiveTriggerActions();
+			}
+			else if (OtherObject.GetComponent<ObjectAttributesContainer>() != null)
+			{
+				foreach (uint CurrentTargetTrigger in ContainedObjectAttributes.TargetTriggerIDNumberList)
 				{
-					Destroy(CurrentTransform.gameObject);
+					if (CurrentTargetTrigger == ContainedObjectAttributes.IDNumber)
+					{
+						ContainedObjectAttributes.ExecuteActiveTriggerActions();
+						break;
+					}
 				}
 			}
 		}
 	}
 
-	// Method that runs all the physics setup tasks.
-	public void SetupPhysics()
+	// Method to execute all game object setup functions.
+	public void RunSetup()
 	{
-		if (gameObject.GetComponent<Rigidbody>() != null)
-		{
-			if (Attributes.PhysicsEnabled)
-			{
-				gameObject.GetComponent<Rigidbody>().isKinematic = Attributes.KinematicEnabled;
-				gameObject.GetComponent<Rigidbody>().useGravity = Attributes.GravityEnabled;
-			}
-			else
-			{
-				Destroy(gameObject.GetComponent<Rigidbody>());
-			}
-		}
-		else
-		{
-			if (Attributes.PhysicsEnabled)
-			{
-				gameObject.AddComponent<Rigidbody>();
-				gameObject.GetComponent<Rigidbody>().isKinematic = Attributes.KinematicEnabled;
-				gameObject.GetComponent<Rigidbody>().useGravity = Attributes.GravityEnabled;
-			}
-		}
+		if (NiceNameOriginOption == NiceNameOrigin.Attribute) { SetGameObjectName(); }
+		else { GetNiceName(); }
 
-		if (gameObject.GetComponent<Collider>() != null)
-		{
-			gameObject.GetComponent<Collider>().enabled = Attributes.CollisionEnabled || Attributes.TriggerEnabled;
-		}
-		else
-		{
-			gameObject.AddComponent<MeshCollider>();
-			gameObject.GetComponent<Collider>().enabled = Attributes.CollisionEnabled || Attributes.TriggerEnabled;
-		}
+		if (ResetGameObjectTransformations) { ResetTransformations(); }
+		if (ClearAllChildren) { DestroyAllChildren(); }
 	}
 
-	// Method that runs all setup processes.
-	public void Setup()
+	// Method to set the name of the current game object same as the "nice" name.
+	public void SetGameObjectName()
 	{
-		// Setup parent object attributes
-		SetupParent();
+		gameObject.name = ContainedObjectAttributes.Name;
+	}
 
-		// Setup child object attributes
-		SetupChild();
+	// Method to get the name of the current game object and use it as the "nice" name.
+	public void GetNiceName()
+	{
+		ContainedObjectAttributes.Name = gameObject.name;
+	}
 
-		// Setup object physics.
-		SetupPhysics();
+	// Method to reset the current game object's position to 0 0 0.
+	public void ResetTransformations()
+	{
+		gameObject.GetComponent<Transform>().position = new Vector3();
+		gameObject.GetComponent<Transform>().eulerAngles = new Vector3();
+		gameObject.GetComponent<Transform>().localScale = new Vector3(1f, 1f, 1f);
+	}
 
-		ObjectAttributes CurrentComponent = GetComponent<ObjectAttributes>();
+	// Method to destroy all children that the game object may have.
+	public void DestroyAllChildren()
+	{
+		List<Transform> CurrentChildrenTransformList = gameObject.GetComponentsInChildren<Transform>().ToList();
+
+		foreach (Transform CurrentChildTransform in CurrentChildrenTransformList)
+		{
+			Destroy(CurrentChildTransform.gameObject);
+		}
 	}
 }

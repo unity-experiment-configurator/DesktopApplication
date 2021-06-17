@@ -132,7 +132,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 5201760174231739244, guid: 9f6fa2887ac1a45789a3bcfffafa2697, type: 3}
       propertyPath: m_Name
-      value: SceneNameVisual_Prefab_Var1
+      value: grp_SceneNameVisual_Group1
       objectReference: {fileID: 0}
     - target: {fileID: 5201760174231739245, guid: 9f6fa2887ac1a45789a3bcfffafa2697, type: 3}
       propertyPath: m_RootOrder
