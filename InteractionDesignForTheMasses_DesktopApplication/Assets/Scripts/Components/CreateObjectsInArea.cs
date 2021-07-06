@@ -21,6 +21,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 using UnityEngine.XR.Interaction.Toolkit;
 
 public class CreateObjectsInArea : MonoBehaviour
@@ -37,7 +38,10 @@ public class CreateObjectsInArea : MonoBehaviour
 
 	[Header("Child Object Attributes")]
 	public bool AddObjectAttributesToChild = true;
-	public bool AddObjectSoundToChild = true;
+	public bool AddObjectSoundAlwaysToChild;
+	public bool AddObjectSoundOnGrabToChild;
+	public bool AddObjectSoundOnDropToChild;
+	public AudioMixerGroup TargetAudioMixer;
 	public ObjectAttributes ChildObjectAttributes;
 
 	[Header("Child Transformation Range")]
@@ -137,7 +141,7 @@ public class CreateObjectsInArea : MonoBehaviour
 	{
 		if (CurrentObjectIsParent) { ExternalParentObject = gameObject.transform; }
 
-		List<GameObject> CurrentChildObjectList= CreateObjectArrangement.RandomInArea
+		List<GameObject> CurrentChildObjectList = CreateObjectArrangement.RandomInArea
 		(
 			ChildCreationTotal - CreatedChildObjectList.Count,
 			ChildObjectSamplesList,
@@ -157,7 +161,9 @@ public class CreateObjectsInArea : MonoBehaviour
 
 		AddCollisionCheckComponents();
 		if (AddObjectAttributesToChild) AddObjectAttributesComponents();
-		if (AddObjectSoundToChild) AddSoundComponents();
+		if (AddObjectSoundAlwaysToChild) AddSoundAlwaysComponents();
+		if (AddObjectSoundOnGrabToChild) AddSoundOnGrabComponents();
+		if (AddObjectSoundOnDropToChild) AddSoundOnDropComponents();
 	}
 
 	// Method to add all necessary collision components to all currently created children game objects.
@@ -190,18 +196,61 @@ public class CreateObjectsInArea : MonoBehaviour
 		}
 	}
 
-	public void AddSoundComponents()
+	public void AddSoundOnGrabComponents()
 	{
 		foreach (GameObject CurrentChildGameObject in CreatedChildObjectList)
 		{
 			if (CurrentChildGameObject.GetComponent<AudioSource>() == null) CurrentChildGameObject.AddComponent<AudioSource>();
 			if (CurrentChildGameObject.GetComponent<ObjectGrabMonitor>() == null) CurrentChildGameObject.AddComponent<ObjectGrabMonitor>();
 			if (CurrentChildGameObject.GetComponent<PlaySoundOnGrab>() == null) CurrentChildGameObject.AddComponent<PlaySoundOnGrab>();
+			if (CurrentChildGameObject.GetComponent<ResonanceAudioSource>() == null) CurrentChildGameObject.AddComponent<ResonanceAudioSource>();
 
 			CurrentChildGameObject.GetComponent<AudioSource>().playOnAwake = false;
-			CurrentChildGameObject.GetComponent<AudioSource>().volume = 0.6f;
+			CurrentChildGameObject.GetComponent<AudioSource>().volume = 0.2f;
+			CurrentChildGameObject.GetComponent<AudioSource>().spatialBlend = 1f;
 			CurrentChildGameObject.GetComponent<AudioSource>().clip = ChildAudioSamplesList[UnityEngine.Random.Range(0, ChildAudioSamplesList.Count)];
+			CurrentChildGameObject.GetComponent<AudioSource>().spatialize = true;
+			CurrentChildGameObject.GetComponent<AudioSource>().outputAudioMixerGroup = TargetAudioMixer;
 			CurrentChildGameObject.GetComponent<PlaySoundOnGrab>().PlayOnlyOnce = false;
+		}
+	}
+
+	public void AddSoundOnDropComponents()
+	{
+		foreach (GameObject CurrentChildGameObject in CreatedChildObjectList)
+		{
+			if (CurrentChildGameObject.GetComponent<AudioSource>() == null) CurrentChildGameObject.AddComponent<AudioSource>();
+			if (CurrentChildGameObject.GetComponent<ObjectGrabMonitor>() == null) CurrentChildGameObject.AddComponent<ObjectGrabMonitor>();
+			if (CurrentChildGameObject.GetComponent<PlaySoundOnDrop>() == null) CurrentChildGameObject.AddComponent<PlaySoundOnDrop>();
+			if (CurrentChildGameObject.GetComponent<ResonanceAudioSource>() == null) CurrentChildGameObject.AddComponent<ResonanceAudioSource>();
+
+			CurrentChildGameObject.GetComponent<AudioSource>().playOnAwake = false;
+			CurrentChildGameObject.GetComponent<AudioSource>().volume = 0.2f;
+			CurrentChildGameObject.GetComponent<AudioSource>().spatialBlend = 1f;
+			CurrentChildGameObject.GetComponent<AudioSource>().clip = ChildAudioSamplesList[UnityEngine.Random.Range(0, ChildAudioSamplesList.Count)];
+			CurrentChildGameObject.GetComponent<AudioSource>().spatialize = true;
+			CurrentChildGameObject.GetComponent<AudioSource>().outputAudioMixerGroup = TargetAudioMixer;
+			CurrentChildGameObject.GetComponent<PlaySoundOnDrop>().PlayOnlyOnce = false;
+		}
+	}
+
+	public void AddSoundAlwaysComponents()
+	{
+		foreach (GameObject CurrentChildGameObject in CreatedChildObjectList)
+		{
+			if (CurrentChildGameObject.GetComponent<AudioSource>() == null) CurrentChildGameObject.AddComponent<AudioSource>();
+			if (CurrentChildGameObject.GetComponent<ObjectGrabMonitor>() == null) CurrentChildGameObject.AddComponent<ObjectGrabMonitor>();
+			if (CurrentChildGameObject.GetComponent<PlaySoundOnDrop>() == null) CurrentChildGameObject.AddComponent<PlaySoundOnDrop>();
+			if (CurrentChildGameObject.GetComponent<ResonanceAudioSource>() == null) CurrentChildGameObject.AddComponent<ResonanceAudioSource>();
+
+			CurrentChildGameObject.GetComponent<AudioSource>().playOnAwake = true;
+			CurrentChildGameObject.GetComponent<AudioSource>().volume = 0.2f;
+			CurrentChildGameObject.GetComponent<AudioSource>().spatialBlend = 1f;
+			CurrentChildGameObject.GetComponent<AudioSource>().clip = ChildAudioSamplesList[UnityEngine.Random.Range(0, ChildAudioSamplesList.Count)];
+			CurrentChildGameObject.GetComponent<AudioSource>().spatialize = true;
+			CurrentChildGameObject.GetComponent<AudioSource>().outputAudioMixerGroup = TargetAudioMixer;
+			CurrentChildGameObject.GetComponent<AudioSource>().loop = true;
+			CurrentChildGameObject.GetComponent<AudioSource>().Play();
 		}
 	}
 }

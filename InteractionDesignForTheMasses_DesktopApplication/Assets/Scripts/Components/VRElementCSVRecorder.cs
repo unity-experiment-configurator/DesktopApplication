@@ -9,9 +9,13 @@ using UnityEngine.XR.Interaction.Toolkit;
 public class VRElementCSVRecorder : MonoBehaviour
 {
 	[Header("Recorder Options")]
-	public string OutputFileName = "ExperimentRecords";
-	public char Separator = ',';
-	public int RecordLineInterval = 2;
+	public string OutputFileName;
+	public bool UseConfigurationFileName;
+	public bool AddDateTimeToFileName;
+	
+	[Header("Recorder Format Options")]
+	public char Separator;
+	public int RecordLineInterval ;
 
 	[Header("Scene Database Setup")]
 	public SceneDataBase TargetSceneDataBase;
@@ -90,32 +94,64 @@ public class VRElementCSVRecorder : MonoBehaviour
 		if (RecordLeftHandRotation) OutputString += VRLeftHandGameObject.transform.eulerAngles.x.ToString() + Separator + VRLeftHandGameObject.transform.eulerAngles.y.ToString() + Separator + VRLeftHandGameObject.transform.eulerAngles.z.ToString() + Separator;
 		if (RecordLeftHandGrabbedObjectRole)
 		{
-			XRBaseInteractable CurrentInteractableObject = VRLeftHandGameObject.GetComponent<XRDirectInteractor>().selectTarget;
-
-			if (CurrentInteractableObject != null)
+			if (VRLeftHandGameObject.GetComponent<XRDirectInteractor>() != null)
 			{
-				ObjectAttributesContainer CurrentAttributesContainer = CurrentInteractableObject.gameObject.GetComponent<ObjectAttributesContainer>();
+				XRBaseInteractable CurrentInteractableObject = VRLeftHandGameObject.GetComponent<XRDirectInteractor>().selectTarget;
 
-				if (CurrentAttributesContainer != null) OutputString += CurrentAttributesContainer.ContainedObjectAttributes.RoleTag.ToString() + Separator;
-				else OutputString += "Unknown" + Separator;
+				if (CurrentInteractableObject != null)
+				{
+					ObjectAttributesContainer CurrentAttributesContainer = CurrentInteractableObject.gameObject.GetComponent<ObjectAttributesContainer>();
+
+					if (CurrentAttributesContainer != null) OutputString += CurrentAttributesContainer.ContainedObjectAttributes.RoleTag.ToString() + Separator;
+					else OutputString += "Unknown" + Separator;
+				}
+				else OutputString += "NoObject" + Separator;
 			}
-			else OutputString += "NoObject" + Separator;
+			else if (VRLeftHandGameObject.GetComponent<XRRayInteractor>() != null)
+			{
+				XRBaseInteractable CurrentInteractableObject = VRLeftHandGameObject.GetComponent<XRRayInteractor>().selectTarget;
+
+				if (CurrentInteractableObject != null)
+				{
+					ObjectAttributesContainer CurrentAttributesContainer = CurrentInteractableObject.gameObject.GetComponent<ObjectAttributesContainer>();
+
+					if (CurrentAttributesContainer != null) OutputString += CurrentAttributesContainer.ContainedObjectAttributes.RoleTag.ToString() + Separator;
+					else OutputString += "Unknown" + Separator;
+				}
+				else OutputString += "NoObject" + Separator;
+			}
 		}
 
 		if (RecordRightHandPosition) OutputString += VRRightHandGameObject.transform.position.x.ToString() + Separator + VRRightHandGameObject.transform.position.y.ToString() + Separator + VRRightHandGameObject.transform.position.z.ToString() + Separator;
 		if (RecordRightHandRotation) OutputString += VRRightHandGameObject.transform.eulerAngles.x.ToString() + Separator + VRRightHandGameObject.transform.eulerAngles.y.ToString() + Separator + VRRightHandGameObject.transform.eulerAngles.z.ToString() + Separator;
 		if (RecordRightHandGrabbedObjectRole)
 		{
-			XRBaseInteractable CurrentInteractableObject = VRRightHandGameObject.GetComponent<XRDirectInteractor>().selectTarget;
-
-			if (CurrentInteractableObject != null)
+			if (VRRightHandGameObject.GetComponent<XRDirectInteractor>() != null)
 			{
-				ObjectAttributesContainer CurrentAttributesContainer = CurrentInteractableObject.gameObject.GetComponent<ObjectAttributesContainer>();
+				XRBaseInteractable CurrentInteractableObject = VRRightHandGameObject.GetComponent<XRDirectInteractor>().selectTarget;
 
-				if (CurrentAttributesContainer != null) OutputString += CurrentAttributesContainer.ContainedObjectAttributes.RoleTag.ToString() + Separator;
-				else OutputString += "Unknown" + Separator;
+				if (CurrentInteractableObject != null)
+				{
+					ObjectAttributesContainer CurrentAttributesContainer = CurrentInteractableObject.gameObject.GetComponent<ObjectAttributesContainer>();
+
+					if (CurrentAttributesContainer != null) OutputString += CurrentAttributesContainer.ContainedObjectAttributes.RoleTag.ToString() + Separator;
+					else OutputString += "Unknown" + Separator;
+				}
+				else OutputString += "NoObject" + Separator;
 			}
-			else OutputString += "NoObject" + Separator;
+			else if (VRRightHandGameObject.GetComponent<XRRayInteractor>() != null)
+			{
+				XRBaseInteractable CurrentInteractableObject = VRRightHandGameObject.GetComponent<XRRayInteractor>().selectTarget;
+
+				if (CurrentInteractableObject != null)
+				{
+					ObjectAttributesContainer CurrentAttributesContainer = CurrentInteractableObject.gameObject.GetComponent<ObjectAttributesContainer>();
+
+					if (CurrentAttributesContainer != null) OutputString += CurrentAttributesContainer.ContainedObjectAttributes.RoleTag.ToString() + Separator;
+					else OutputString += "Unknown" + Separator;
+				}
+				else OutputString += "NoObject" + Separator;
+			}
 		}
 
 		if (OutputString.Last() == Separator) OutputString.Remove(OutputString.Length - 1);
@@ -136,9 +172,26 @@ public class VRElementCSVRecorder : MonoBehaviour
 	public void StartRecording()
 	{
 		RecordingActive = true;
-		CurrentStreamWritter = new StreamWriter(Directory.GetCurrentDirectory() + "/" + OutputFileName + ".csv");
-		RecordHeaderLine();
 
+		FileManagement.ResolveOutputDirectory();
+
+		string CurrentOutputFilePath;
+		if (UseConfigurationFileName) CurrentOutputFilePath = FileManagement.ComposeOutputDirectory() + "/" + TargetSceneDataBase.CleanConfigurationFileName;
+		else CurrentOutputFilePath = FileManagement.ComposeOutputDirectory() + "/" + OutputFileName;
+
+		if (AddDateTimeToFileName)
+		{
+			string CurrentDateTime = DateTime.Now.ToString();
+			CurrentDateTime = CurrentDateTime.Replace("/", "-");
+			CurrentDateTime = CurrentDateTime.Replace(":", "-");
+
+			CurrentOutputFilePath += " - " + CurrentDateTime + ".csv";
+		}
+		else CurrentOutputFilePath += ".csv";
+
+		CurrentStreamWritter = new StreamWriter(CurrentOutputFilePath);
+
+		RecordHeaderLine();
 	}
 
 	public void EndRecording()

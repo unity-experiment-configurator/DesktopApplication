@@ -24,6 +24,6 @@ public class SessionStatusDisplay : MonoBehaviour
 	// Update is called once per frame
 	void Update()
 	{
-		TargetTextComponent.text = "Block - " + (TargetSceneDataBase.LoadedSceneConstructionData.sessionBlockCount - TargetSceneDataBase.CurrentSessionBlockCount + 1).ToString() + "/" + TargetSceneDataBase.LoadedSceneConstructionData.sessionBlockCount.ToString() + "\n" + "Trial - " + (TargetSceneDataBase.LoadedSceneConstructionData.blockTrialCount - TargetSceneDataBase.CurrentBlockTrialCount + 1).ToString() + "/" + TargetSceneDataBase.LoadedSceneConstructionData.blockTrialCount.ToString();
+		TargetTextComponent.text = "Trial - " + (TargetSceneDataBase.LoadedSceneConstructionData.blockTrialCount - TargetSceneDataBase.CurrentBlockTrialCount + 1).ToString() + "/" + TargetSceneDataBase.LoadedSceneConstructionData.blockTrialCount.ToString();
 	}
 }

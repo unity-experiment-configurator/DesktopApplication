@@ -27,7 +27,12 @@ using UnityEngine.SceneManagement;
 [Serializable]
 public class SceneDataBase : MonoBehaviour
 {
-	[Header("Configuration File Options")]
+	[Header("Configuration File Directory")]
+	public string ConfigurationFileName;
+	public ReadConfigurationFileOption readConfigurationFileOption;
+	public string CleanConfigurationFileName;
+
+	[Header("Configuration File Parsing")]
 	public bool ReadConfigurationFileOnEnable = true;
 	public bool ParseAllConfigurationDataOnEnable = true;
 	public bool GetDefinedExperimentOnEnable = true;
@@ -35,6 +40,8 @@ public class SceneDataBase : MonoBehaviour
 	
 	[Header("Scene Construction Data")]
 	public SceneConstructionData LoadedSceneConstructionData;
+	public bool PreventZeroBlockCount;
+	public bool PreventZeroTrialCount;
 
 	[Header("Scene Association")]
 	public SceneObjectContainer AssociatedExperimentScene;
@@ -59,17 +66,44 @@ public class SceneDataBase : MonoBehaviour
 
 	void OnEnable()
 	{
-		if (ReadConfigurationFileOnEnable) ReadConfiguration();
+		if (ReadConfigurationFileOnEnable)
+		{
+			FileManagement.ResolveInputDirectory();
+			ReadConfigurationFile();
+		}
+		
 		if (ParseAllConfigurationDataOnEnable) LoadedSceneConstructionData.ParseAll();
+
+		if (PreventZeroBlockCount && LoadedSceneConstructionData.sessionBlockCount <= 0) LoadedSceneConstructionData.sessionBlockCount = 1;
+		if (PreventZeroTrialCount && LoadedSceneConstructionData.blockTrialCount <= 0) LoadedSceneConstructionData.blockTrialCount = 1;
+
 		if (GetDefinedExperimentOnEnable) GetDefinedExperimentScene();
 		if (SetCurrentSessionCountersOnEnable) SetCurrentSessionCounters();
 	}
 
 	// Method to read the config.json file located in the currently same directory the application is in.
-	public void ReadConfiguration()
+	public void ReadConfigurationFile()
 	{
 		SceneDataBaseEstablished = false;
-		LoadedSceneConstructionData = Configuration.Read();
+
+		if (readConfigurationFileOption == ReadConfigurationFileOption.GetSpecified)
+		{
+			LoadedSceneConstructionData = FileManagement.ReadSpecificConfigurationFile(ConfigurationFileName);
+			CleanConfigurationFileName = ConfigurationFileName;
+		}
+		else if (readConfigurationFileOption == ReadConfigurationFileOption.GetNewest)
+		{
+			LoadedSceneConstructionData = FileManagement.ReadNewestConfigurationFile();
+			CleanConfigurationFileName = FileManagement.GetNewestConfigurationFileName();
+		}
+		else if (readConfigurationFileOption == ReadConfigurationFileOption.GetOldest)
+		{
+			LoadedSceneConstructionData = FileManagement.ReadOldestConfigurationFile();
+			CleanConfigurationFileName = FileManagement.GetOldestConfigurationFileName();
+		}
+
+		CleanConfigurationFileName = CleanConfigurationFileName.Replace("." + FileManagement.ConfigurationFileFormat, "");
+
 		SceneDataBaseEstablished = true;
 	}
 

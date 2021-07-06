@@ -310,10 +310,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: SceneDataBase_Prefab_Var1
       objectReference: {fileID: 0}
-    - target: {fileID: 8563921077136849018, guid: f21745c69e42341d282858bd2d87229e, type: 3}
-      propertyPath: ParseAllConfigurationDataOnEnable
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 8563921077136849019, guid: f21745c69e42341d282858bd2d87229e, type: 3}
       propertyPath: m_RootOrder
       value: 2

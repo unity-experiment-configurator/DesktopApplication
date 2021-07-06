@@ -144,7 +144,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 5b4d44efa57094d43aad80bee811ec75, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.79
+      value: 1.727
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 5b4d44efa57094d43aad80bee811ec75, type: 3}
       propertyPath: m_LocalRotation.w
@@ -177,6 +177,26 @@ PrefabInstance:
     - target: {fileID: -3887185075125053422, guid: 5b4d44efa57094d43aad80bee811ec75, type: 3}
       propertyPath: m_Enabled
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -3887185075125053422, guid: 5b4d44efa57094d43aad80bee811ec75, type: 3}
+      propertyPath: m_DirtyAABB
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -3887185075125053422, guid: 5b4d44efa57094d43aad80bee811ec75, type: 3}
+      propertyPath: m_AABB.m_Center.x
+      value: -0.0000009536743
+      objectReference: {fileID: 0}
+    - target: {fileID: -3887185075125053422, guid: 5b4d44efa57094d43aad80bee811ec75, type: 3}
+      propertyPath: m_AABB.m_Extent.x
+      value: 20.915493
+      objectReference: {fileID: 0}
+    - target: {fileID: -3887185075125053422, guid: 5b4d44efa57094d43aad80bee811ec75, type: 3}
+      propertyPath: m_AABB.m_Extent.y
+      value: 20.915495
+      objectReference: {fileID: 0}
+    - target: {fileID: -3887185075125053422, guid: 5b4d44efa57094d43aad80bee811ec75, type: 3}
+      propertyPath: m_AABB.m_Extent.z
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: -3887185075125053422, guid: 5b4d44efa57094d43aad80bee811ec75, type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -511,6 +531,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 7033910969678946676, guid: c867145a7c66d8b48a786e8e15c30d46, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7880192225360292440, guid: c867145a7c66d8b48a786e8e15c30d46, type: 3}
       propertyPath: m_Name
       value: XRSetup_Prefab_Var1

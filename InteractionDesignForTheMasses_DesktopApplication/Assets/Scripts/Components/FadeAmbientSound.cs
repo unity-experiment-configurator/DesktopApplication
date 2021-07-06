@@ -27,10 +27,10 @@ public class FadeAmbientSound : MonoBehaviour
 	void Update()
 	{
 		if (CurrentFadeState == FadeState.FadeOut && CurrentVolumeValue > 0) CurrentVolumeValue -= FadeOutPace;
-		else if (CurrentFadeState == FadeState.FadeIn && CurrentVolumeValue < 0.6) CurrentVolumeValue += FadeInPace;
+		else if (CurrentFadeState == FadeState.FadeIn && CurrentVolumeValue < 0.1) CurrentVolumeValue += FadeInPace;
 		else CurrentFadeState = FadeState.Idle;
 
-		CurrentVolumeValue = Mathf.Clamp(CurrentVolumeValue, 0, 0.6f);
+		CurrentVolumeValue = Mathf.Clamp(CurrentVolumeValue, 0, 0.1f);
 
 		CurrentAudioSource.volume = CurrentVolumeValue;
 	}

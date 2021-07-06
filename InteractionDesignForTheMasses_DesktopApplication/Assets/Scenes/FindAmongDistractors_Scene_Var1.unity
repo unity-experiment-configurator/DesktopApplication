@@ -526,7 +526,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 623608588}
   m_LocalRotation: {x: 0, y: -0.9063079, z: 0, w: 0.42261827}
-  m_LocalPosition: {x: 0.75, y: 0, z: 0.4}
+  m_LocalPosition: {x: 1, y: 0, z: 0.4}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 239342037}
@@ -914,7 +914,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 928345499168031372, guid: 6cc39aea0d8c448eebb4392b8a646f26, type: 3}
       propertyPath: FloorLevelHeight
-      value: 0.76
+      value: 1.01
       objectReference: {fileID: 0}
     - target: {fileID: 928345499168031372, guid: 6cc39aea0d8c448eebb4392b8a646f26, type: 3}
       propertyPath: ChildCollisionMode
@@ -1128,7 +1128,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1823130012}
   m_LocalRotation: {x: 0, y: 0.9063079, z: 0, w: 0.42261827}
-  m_LocalPosition: {x: -0.75, y: 0, z: 0.4}
+  m_LocalPosition: {x: -1, y: 0, z: 0.4}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2066505919}
@@ -1173,22 +1173,28 @@ MonoBehaviour:
   FindTargetObjectTrigger: 1
   TargetSceneLoader: {fileID: 0}
   FindTargetSceneLoader: 1
+  ExitScene:
+    Scene: Finish_Scene_Var1
   TargetVRElementCSVRecorder: {fileID: 0}
   FindTargetVRElementCSVRecorder: 1
+  TargetFadeElement: {fileID: 0}
+  FindTargetFadeElement: 0
   ParseDistractorDataFromSceneDataBase: 1
   DistractorObjectCreator: {fileID: 1760081005}
   distractorModels: []
   distractorColors: []
   distractorSize: 0
-  distractorSizeMultiplier: 0.0075
+  distractorSizeMultiplier: 0.012
   distractorCount: 0
   ParseTargetDataFromSceneDataBase: 1
   TargetObjectCreator: {fileID: 1654002595}
   targetModel: 
   targetColor: 
   targetSound: 
+  targetSoundPlaybackEvent: 
   targetSize: 0
-  targetSizeMultiplier: 0.0075
+  targetSizeMultiplier: 0.012
+  BackgroundAudioObject: {fileID: 248413863929940893, guid: 961b851964d600c40875dccd21cf043c, type: 3}
 --- !u!4 &1935550871
 Transform:
   m_ObjectHideFlags: 0
@@ -1225,6 +1231,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 721459004}
     m_Modifications:
+    - target: {fileID: 5423896155628690931, guid: b3c88e0149ae54e409e7e5ca6700c808, type: 3}
+      propertyPath: m_text
+      value: TRIAL COUNT
+      objectReference: {fileID: 0}
     - target: {fileID: 7189285023988413674, guid: b3c88e0149ae54e409e7e5ca6700c808, type: 3}
       propertyPath: m_Name
       value: grp_Sign_Group1
@@ -1243,7 +1253,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7534144009307762256, guid: b3c88e0149ae54e409e7e5ca6700c808, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 1.5
+      value: 1.1
       objectReference: {fileID: 0}
     - target: {fileID: 7534144009307762256, guid: b3c88e0149ae54e409e7e5ca6700c808, type: 3}
       propertyPath: m_LocalRotation.w
@@ -1260,18 +1270,6 @@ PrefabInstance:
     - target: {fileID: 7534144009307762256, guid: b3c88e0149ae54e409e7e5ca6700c808, type: 3}
       propertyPath: m_LocalRotation.z
       value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7534144009307762256, guid: b3c88e0149ae54e409e7e5ca6700c808, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7534144009307762256, guid: b3c88e0149ae54e409e7e5ca6700c808, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 180
-      objectReference: {fileID: 0}
-    - target: {fileID: 7534144009307762256, guid: b3c88e0149ae54e409e7e5ca6700c808, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b3c88e0149ae54e409e7e5ca6700c808, type: 3}
@@ -1350,7 +1348,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8397605276739627266, guid: 8fbba7d4dcbd17440a0caffe4caf46e1, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.75
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8397605276739627266, guid: 8fbba7d4dcbd17440a0caffe4caf46e1, type: 3}
       propertyPath: m_LocalPosition.y

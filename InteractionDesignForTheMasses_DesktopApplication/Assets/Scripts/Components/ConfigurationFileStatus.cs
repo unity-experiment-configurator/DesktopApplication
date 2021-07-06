@@ -28,7 +28,7 @@ public class ConfigurationFileStatus : MonoBehaviour
 		if (FindTextComponent == FindReferenceCondition.OnlyIfNull && TextComponent == null) { TextComponent = GetComponent<TextMeshPro>(); }
 		else if (FindTextComponent == FindReferenceCondition.Always) { TextComponent = GetComponent<TextMeshPro>(); }
 
-		Result = Configuration.Confirm();
+		Result = FileManagement.ConfirmAnyConfigurationFile();
 
 		Evaluate();
 	}

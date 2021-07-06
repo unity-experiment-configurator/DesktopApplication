@@ -188,7 +188,8 @@ GameObject:
   - component: {fileID: 8397605276739627266}
   - component: {fileID: 4677038235100251467}
   - component: {fileID: 2466537082972577118}
-  - component: {fileID: 2444695950689617089}
+  - component: {fileID: -9216382623121480048}
+  - component: {fileID: 6589395640244333079}
   m_Layer: 0
   m_Name: GoalArea_Prefab_Var1
   m_TagString: Untagged
@@ -226,7 +227,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TargetObjectRoleTag: 3
   PermanentActivation: 1
-  TargetAudioSource: {fileID: 0}
+  TargetAudioSource: {fileID: -9216382623121480048}
   FindTargetAudioSource: 2
   PlayAudioOnTrigger: 0
   CreationGameObjectList:
@@ -245,23 +246,23 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 40, y: 1.95, z: 40}
   m_Center: {x: 0, y: 6.5, z: 0}
---- !u!82 &2444695950689617089
+--- !u!82 &-9216382623121480048
 AudioSource:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9205807532523828152}
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: b9475b9b7d533444f989b10f8272f96a, type: 3}
+  OutputAudioMixerGroup: {fileID: 24300002, guid: 248799cb4acba48f7b3ee842a80f788c, type: 2}
+  m_audioClip: {fileID: 8300000, guid: 30397481bd25ca74eac6f1de71fb0707, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.65
+  m_Volume: 0.2
   m_Pitch: 1
   Loop: 0
   Mute: 0
-  Spatialize: 0
+  Spatialize: 1
   SpatializePostEffects: 0
   Priority: 128
   DopplerLevel: 1
@@ -301,7 +302,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0
+      value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -341,3 +342,26 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &6589395640244333079
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9205807532523828152}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef5e1719799ca4f9b9f5db81449517ca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bypassRoomEffects: 0
+  directivityAlpha: 0
+  directivitySharpness: 1
+  listenerDirectivityAlpha: 0
+  listenerDirectivitySharpness: 1
+  gainDb: 0
+  nearFieldEffectEnabled: 0
+  nearFieldEffectGain: 1
+  occlusionEnabled: 0
+  occlusionIntensity: 1
+  quality: 2

@@ -132,7 +132,6 @@ PlayerSettings:
   - {fileID: 11400000, guid: 76069745fe7ab394090a784966db46c2, type: 2}
   - {fileID: 11400000, guid: f24695a31f47d4262afdd32cc24de6e4, type: 2}
   - {fileID: -1350052199402210713, guid: 9488c9311c7734f2abb5be4bbd80fd17, type: 2}
-  - {fileID: -5777102759466512566, guid: ee3e84dd592ff485bb79742a36519f90, type: 2}
   metroInputSource: 0
   wsaTransparentSwapchain: 0
   m_HolographicPauseOnTrackingLoss: 1
@@ -487,6 +486,8 @@ PlayerSettings:
   switchNetworkInterfaceManagerInitializeEnabled: 1
   switchPlayerConnectionEnabled: 1
   switchUseNewStyleFilepaths: 0
+  switchUseMicroSleepForYield: 1
+  switchMicroSleepForYieldTime: 25
   ps4NPAgeRating: 12
   ps4NPTitleSecret: 
   ps4NPTrophyPackPath: 
@@ -557,6 +558,7 @@ PlayerSettings:
   ps4videoRecordingFeaturesUsed: 0
   ps4contentSearchFeaturesUsed: 0
   ps4CompatibilityPS5: 0
+  ps4AllowPS5Detection: 0
   ps4GPU800MHz: 1
   ps4attribEyeToEyeDistanceSettingVR: 0
   ps4IncludedModules: []

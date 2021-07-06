@@ -20,24 +20,30 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.XR.Interaction.Toolkit;
 
 public class FindAmongDistractors_SceneBehaviour : MonoBehaviour
 {
-	[Header("Scene Database Object")]
+	[Header("Scene Database Component")]
 	public SceneDataBase TargetSceneDataBase;
 	public FindReferenceCondition FindTargetSceneDataBase = FindReferenceCondition.OnlyIfNull;
 
-	[Header("Object Trigger Object")]
+	[Header("Object Trigger Component")]
 	public ObjectRoleTrigger TargetObjectTrigger;
 	public FindReferenceCondition FindTargetObjectTrigger = FindReferenceCondition.OnlyIfNull;
 
-	[Header("Scene Loader Object")]
+	[Header("Scene Loader Component")]
 	public SceneLoader TargetSceneLoader;
 	public FindReferenceCondition FindTargetSceneLoader = FindReferenceCondition.OnlyIfNull;
+	public SceneObjectContainer ExitScene;
 
-	[Header("VR Element Recorder Object")]
+	[Header("VR Element Recorder Component")]
 	public VRElementCSVRecorder TargetVRElementCSVRecorder;
 	public FindReferenceCondition FindTargetVRElementCSVRecorder = FindReferenceCondition.OnlyIfNull;
+
+	[Header("Fade Element Interaction")]
+	public FadeElementOperation TargetFadeElement;
+	public FindReferenceCondition FindTargetFadeElement = FindReferenceCondition.OnlyIfNull;
 
 	[Header("Distractor Objects Setup")]
 	public bool ParseDistractorDataFromSceneDataBase = true;
@@ -54,10 +60,23 @@ public class FindAmongDistractors_SceneBehaviour : MonoBehaviour
 	public string targetModel;
 	public string targetColor;
 	public string targetSound;
+	public string targetSoundPlaybackEvent;
 	public float targetSize;
 	public float targetSizeMultiplier = 0.005f;
 
-	public string globalSound;
+	public string interactionType;
+
+	public GameObject BackgroundAudioObject;
+
+	private bool GoalAudioOnGoing = false;
+	private bool LoadAgain = false;
+	private bool TaskComplete = false;
+	private bool DestroyedSimilar = false;
+	private bool InteractorsEstablished = false;
+
+	private List<GameObject> InteractorObjects = new List<GameObject>();
+
+	//public string globalSound;
 
 	void Start()
 	{
@@ -73,40 +92,126 @@ public class FindAmongDistractors_SceneBehaviour : MonoBehaviour
 		if (FindTargetVRElementCSVRecorder == FindReferenceCondition.OnlyIfNull && TargetVRElementCSVRecorder == null) TargetVRElementCSVRecorder = FindObjectOfType<VRElementCSVRecorder>();
 		else if (FindTargetVRElementCSVRecorder == FindReferenceCondition.Always) TargetVRElementCSVRecorder = FindObjectOfType<VRElementCSVRecorder>();
 
+		if (FindTargetFadeElement == FindReferenceCondition.OnlyIfNull && TargetFadeElement == null) TargetFadeElement = FindObjectOfType<FadeElementOperation>();
+		else if (FindTargetFadeElement == FindReferenceCondition.Always) TargetFadeElement = FindObjectOfType<FadeElementOperation>();
+
 		if (!TargetVRElementCSVRecorder.IsActive()) TargetVRElementCSVRecorder.StartRecording();
 
-		if (ParseDistractorDataFromSceneDataBase) { DistractorSetup(); }
-		if (ParseTargetDataFromSceneDataBase) { TargetSetup(); }
+		if (ParseDistractorDataFromSceneDataBase) DistractorSetup();
+		if (ParseTargetDataFromSceneDataBase) TargetSetup();
 
-		AmbientSoundSetup();
+
+		JsonUtility.FromJsonOverwrite(TargetSceneDataBase.LoadedSceneConstructionData.GetConfigurationDataLineByName("interactionType"), this);
+
+		if (interactionType == "point")
+		{
+			foreach (XRDirectInteractor CurrentInteractor in FindObjectsOfType<XRDirectInteractor>())
+			{
+				InteractorObjects.Add(CurrentInteractor.gameObject);
+
+				Destroy(CurrentInteractor);
+			}
+		}
+
+		//AmbientSoundSetup();
 
 		DistractorObjectCreator.gameObject.SetActive(true);
 		TargetObjectCreator.gameObject.SetActive(true);
 
-		
+		if (FindObjectOfType<BackgroundAudioDataParser>() == null) Instantiate(BackgroundAudioObject);
 
+		GameObject.Find("AmbientSound").GetComponent<FadeAmbientSound>().CurrentFadeState = FadeState.FadeOut;
 	}
 
 	void Update()
 	{
-		if (TargetObjectTrigger.ActiveTrigger && TargetSceneDataBase.CurrentSessionBlockCount > 1)
+
+		if (interactionType == "point")
 		{
+			foreach (GameObject CurrentInteractor in InteractorObjects)
+			{
+				if (CurrentInteractor.GetComponent<XRRayInteractor>() == null) CurrentInteractor.AddComponent<XRRayInteractor>();
+				if (CurrentInteractor.GetComponent<LineRenderer>() == null) CurrentInteractor.AddComponent<LineRenderer>();
+				if (CurrentInteractor.GetComponent<XRInteractorLineVisual>() == null) CurrentInteractor.AddComponent<XRInteractorLineVisual>();
+			}
+		}
+
+		if (!DestroyedSimilar)
+		{
+			List<GameObject> DestroySimilar = new List<GameObject>();
+
+			foreach (GameObject CurrentDistractor in DistractorObjectCreator.CreatedChildObjectList)
+			{
+				if (CurrentDistractor.GetComponent<MeshCollider>().sharedMesh.name == TargetObjectCreator.CreatedChildObjectList[0].GetComponent<MeshCollider>().sharedMesh.name
+				&& CurrentDistractor.GetComponent<Renderer>().material.name == TargetObjectCreator.CreatedChildObjectList[0].GetComponent<Renderer>().material.name)
+				{
+					DestroySimilar.Add(CurrentDistractor);
+				}
+			}
+
+			foreach (GameObject CurrentSimilar in DestroySimilar)
+			{
+				Destroy(CurrentSimilar);
+			}
+
+			DestroyedSimilar = true;
+		}
+
+		if (TargetObjectTrigger.ActiveTrigger && !TaskComplete)
+		{
+			if (targetSoundPlaybackEvent == "ongoal" && !TargetObjectTrigger.gameObject.GetComponent<AudioSource>().isPlaying && !GoalAudioOnGoing)
+			{
+				TargetObjectTrigger.gameObject.GetComponent<AudioSource>().Play();
+				GoalAudioOnGoing = true;
+			}
+
 			if (TargetSceneDataBase.CurrentBlockTrialCount > 1)
 			{
+				TaskComplete = true;
+
 				--TargetSceneDataBase.CurrentBlockTrialCount;
-				TargetSceneDataBase.LoadExperimentScene();
+
+				TargetFadeElement.FadeInPace = 0.015f;
+				TargetFadeElement.FadeOutPace = 0.015f;
+
+				TargetSceneLoader.TargetScene = TargetSceneDataBase.AssociatedExperimentScene;
+				TargetSceneLoader.LoadTargetScene();
 			}
 			else
 			{
 				--TargetSceneDataBase.CurrentSessionBlockCount;
-				TargetSceneDataBase.CurrentBlockTrialCount = TargetSceneDataBase.LoadedSceneConstructionData.blockTrialCount;
-				TargetSceneDataBase.LoadExperimentScene();
+
+				if (TargetSceneDataBase.CurrentSessionBlockCount > 0)
+				{
+					TaskComplete = true;
+
+					TargetSceneDataBase.CurrentBlockTrialCount = TargetSceneDataBase.LoadedSceneConstructionData.blockTrialCount;
+
+					TargetFadeElement.FadeInPace = 0.015f;
+					TargetFadeElement.FadeOutPace = 0.015f;
+
+					TargetSceneLoader.TargetScene = TargetSceneDataBase.AssociatedExperimentScene;
+					TargetSceneLoader.LoadTargetScene();
+				}
+				else
+				{
+					TaskComplete = true;
+
+					TargetFadeElement.FadeInPace = 0.005f;
+					TargetFadeElement.FadeOutPace = 0.005f;
+
+					if (TargetVRElementCSVRecorder.IsActive()) TargetVRElementCSVRecorder.EndRecording();
+
+					TargetSceneLoader.TargetScene = ExitScene;
+					TargetSceneLoader.LoadTargetScene();
+
+					GameObject.Find("AmbientSound").GetComponent<FadeAmbientSound>().CurrentFadeState = FadeState.FadeIn;
+				}
 			}
 		}
 		else if (TargetObjectTrigger.ActiveTrigger)
 		{
-			if (TargetVRElementCSVRecorder.IsActive()) TargetVRElementCSVRecorder.EndRecording();
-			TargetSceneLoader.LoadTargetScene();
+			
 		}
 	}
 
@@ -142,6 +247,11 @@ public class FindAmongDistractors_SceneBehaviour : MonoBehaviour
 		JsonUtility.FromJsonOverwrite(TargetSceneDataBase.LoadedSceneConstructionData.GetConfigurationDataLineByName("targetColor"), this);
 		JsonUtility.FromJsonOverwrite(TargetSceneDataBase.LoadedSceneConstructionData.GetConfigurationDataLineByName("targetSound"), this);
 		JsonUtility.FromJsonOverwrite(TargetSceneDataBase.LoadedSceneConstructionData.GetConfigurationDataLineByName("targetSize"), this);
+		JsonUtility.FromJsonOverwrite(TargetSceneDataBase.LoadedSceneConstructionData.GetConfigurationDataLineByName("targetSoundPlaybackEvent"), this);
+
+		if (targetSoundPlaybackEvent == "always") TargetObjectCreator.AddObjectSoundAlwaysToChild = true;
+		else if (targetSoundPlaybackEvent == "ongrab") TargetObjectCreator.AddObjectSoundOnGrabToChild = true;
+		else if (targetSoundPlaybackEvent == "ondrop") TargetObjectCreator.AddObjectSoundOnDropToChild = true;
 
 		GameObject CurrentModelMatch = TargetSceneDataBase.ModelDefinitionList.GetDefinedObjectByName(targetModel);
 		if (CurrentModelMatch != null) { TargetObjectCreator.ChildObjectSamplesList.Add(CurrentModelMatch); }
@@ -158,6 +268,7 @@ public class FindAmongDistractors_SceneBehaviour : MonoBehaviour
 		TargetObjectCreator.MaxTransformations.Scale = new Vector3(CurrentTargetSize, CurrentTargetSize, CurrentTargetSize);
 	}
 
+	/*
 	public void AmbientSoundSetup()
 	{
 		JsonUtility.FromJsonOverwrite(TargetSceneDataBase.LoadedSceneConstructionData.GetConfigurationDataLineByName("globalSound"), this);
@@ -170,4 +281,5 @@ public class FindAmongDistractors_SceneBehaviour : MonoBehaviour
 		NewAmbientSound.GetComponent<AudioSource>().clip = TargetSceneDataBase.SoundDefinitionList.GetDefinedObjectByName(globalSound);
 		NewAmbientSound.GetComponent<AudioSource>().Play();
 	}
+	*/
 }

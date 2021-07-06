@@ -184,6 +184,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   OutputFileName: ExperimentRecords
+  UseConfigurationFileName: 1
+  AddDateTimeToFileName: 1
   Separator: 44
   RecordLineInterval: 2
   TargetSceneDataBase: {fileID: 646024164}
@@ -258,26 +260,6 @@ PrefabInstance:
     - target: {fileID: 8563921077136849017, guid: f21745c69e42341d282858bd2d87229e, type: 3}
       propertyPath: m_Name
       value: utl_SceneDataBase_HostObject_Utility1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8563921077136849018, guid: f21745c69e42341d282858bd2d87229e, type: 3}
-      propertyPath: ParseExperimentTypeOnStart
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8563921077136849018, guid: f21745c69e42341d282858bd2d87229e, type: 3}
-      propertyPath: LoadDefinedExperimentOnStart
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8563921077136849018, guid: f21745c69e42341d282858bd2d87229e, type: 3}
-      propertyPath: ReadConfigurationFileOnStart
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8563921077136849018, guid: f21745c69e42341d282858bd2d87229e, type: 3}
-      propertyPath: ParseAllConfigurationDataOnEnable
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8563921077136849018, guid: f21745c69e42341d282858bd2d87229e, type: 3}
-      propertyPath: ParseConfigurationDataLinesOnStart
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8563921077136849019, guid: f21745c69e42341d282858bd2d87229e, type: 3}
       propertyPath: m_RootOrder
@@ -420,6 +402,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 961388741648963562, guid: c867145a7c66d8b48a786e8e15c30d46, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3404261761072577914, guid: c867145a7c66d8b48a786e8e15c30d46, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7880192225360292440, guid: c867145a7c66d8b48a786e8e15c30d46, type: 3}
       propertyPath: m_Name
       value: grp_XRSetup_Group1
@@ -472,7 +462,11 @@ PrefabInstance:
       propertyPath: m_CastShadows
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7332283372695068234, guid: c867145a7c66d8b48a786e8e15c30d46, type: 3}
+    - {fileID: 961388741648963562, guid: c867145a7c66d8b48a786e8e15c30d46, type: 3}
+    - {fileID: 6903844056224091159, guid: c867145a7c66d8b48a786e8e15c30d46, type: 3}
+    - {fileID: 3404261761072577914, guid: c867145a7c66d8b48a786e8e15c30d46, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: c867145a7c66d8b48a786e8e15c30d46, type: 3}
 --- !u!1 &918852444 stripped
 GameObject:

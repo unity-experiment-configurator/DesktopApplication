@@ -205,6 +205,8 @@ MonoBehaviour:
   FindTargetSceneLoader: 1
   TargetFadeElementOperation: {fileID: 0}
   FindTargetFadeElementOperation: 1
+  TargetFadeAmbientSound: {fileID: 0}
+  FindTargetFadeAmbientSound: 0
 --- !u!1001 &361131822
 PrefabInstance:
   m_ObjectHideFlags: 0

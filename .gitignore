@@ -58,3 +58,12 @@ sysinfo.txt
 
 # Crashlytics generated file
 crashlytics-build.properties
+
+# Cache data
+/[Ll]ibrary/[Pp]ackageCache/*
+/[Ll]ibrary/[Pp]layerDataCache/*
+/[Ll]ibrary/[Ss]haderCache/*
+/[Ll]ibrary/[Ss]tateCache/*
+
+# Repository specific ignore folder
+/[Aa]ssets/[Rr]epositoryExcluded*

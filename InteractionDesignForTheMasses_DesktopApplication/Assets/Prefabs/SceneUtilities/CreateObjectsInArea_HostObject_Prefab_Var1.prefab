@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 928345499168031375}
   - component: {fileID: 928345499168031372}
   m_Layer: 0
-  m_Name: CreateObjectsInArea_Prefab_Var1
+  m_Name: CreateObjectsInArea_HostObject_Prefab_Var1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -52,6 +52,10 @@ MonoBehaviour:
   ChildScaleIsUniform: 0
   AddCollisionCheckerToChild: 1
   AddObjectAttributesToChild: 1
+  AddObjectSoundAlwaysToChild: 0
+  AddObjectSoundOnGrabToChild: 0
+  AddObjectSoundOnDropToChild: 0
+  TargetAudioMixer: {fileID: 24300002, guid: 248799cb4acba48f7b3ee842a80f788c, type: 2}
   ChildObjectAttributes:
     Name: 
     IDNumber: 0
@@ -65,7 +69,6 @@ MonoBehaviour:
     TriggerInactiveEvent:
       m_PersistentCalls:
         m_Calls: []
-  LocalTransformations: 1
   MinTransformations:
     Position: {x: 0, y: 0, z: 0}
     Rotation: {x: 0, y: 0, z: 0}
@@ -81,6 +84,7 @@ MonoBehaviour:
   VisualiseAreaBoundsGizmo: 1
   ChildObjectSamplesList: []
   ChildMaterialSamplesList: []
+  ChildAudioSamplesList: []
   CurrentObjectIsParent: 1
   ExternalParentObject: {fileID: 0}
   CreatedChildObjectList: []

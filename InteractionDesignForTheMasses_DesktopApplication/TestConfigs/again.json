@@ -1,0 +1,36 @@
+{
+  "instructions": "And this is the Instruction. And this is the Instruction. And this is the Instruction. And this is the Instruction. And this is the Instruction. And this is the Instruction. And this is the Instruction. And this is the Instruction. And this is the Instruction. And this is the Instruction. And this is the Instruction. And this is the Instruction. And this is the Instruction. And this is the Instruction. And this is the Instruction. And this is the Instruction. And this is the Instruction. And this is the Instruction. And this is the Instruction. And this is the Instruction. And this is the Instruction. And this is the Instruction. And this is the Instruction. And this is the Instruction. And this is the Instruction. And this is the Instruction. And this is the Instruction. And this is the Instruction. ",
+  "blockTrialCount": 3,
+  "slug": "again",
+  "uid": "IWJThh3D2BanCDgw48TDzanJAkf1",
+  "updatedAt": "2021-07-03T16:29:14.733Z",
+  "title": "Again",
+  "options": {
+    "targetModel": "cone",
+    "distractorColors": [
+      "red",
+      "yellow",
+      "green",
+      "blue",
+      "orange"
+    ],
+    "distractorModels": [
+      "cone"
+    ],
+    "interactionType": "point",
+    "globalSound": "crowd",
+    "targetSoundPlaybackEvent": "ondrop",
+    "distractorCount": 25,
+    "targetSound": "beep",
+    "targetColor": "green",
+    "distractorSize": 0.8,
+    "targetSize": 1
+  },
+  "heartCount": 0,
+  "published": true,
+  "username": "stelios",
+  "createdAt": "2021-07-03T16:26:56.239Z",
+  "duplicationEnabled": true,
+  "description": "This is the Description. This is the Description. This is the Description. This is the Description. This is the Description. This is the Description. This is the Description. This is the Description. This is the Description. This is the Description. This is the Description. This is the Description. This is the Description. This is the Description. This is the Description. This is the Description. This is the Description. This is the Description. This is the Description. This is the Description. This is the Description. This is the Description. This is the Description. This is the Description. This is the Description. ",
+  "url": "https://unity-experiment-configurator.vercel.app/stelios/again"
+}
