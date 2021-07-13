@@ -130,7 +130,9 @@ public class FindAmongDistractors_SceneBehaviour : MonoBehaviour
 		{
 			foreach (GameObject CurrentInteractor in InteractorObjects)
 			{
-				if (CurrentInteractor.GetComponent<XRRayInteractor>() == null) CurrentInteractor.AddComponent<XRRayInteractor>();
+				if (CurrentInteractor.GetComponent<XRDirectInteractor>() != null) Destroy(CurrentInteractor.GetComponent<XRDirectInteractor>());
+
+					if (CurrentInteractor.GetComponent<XRRayInteractor>() == null) CurrentInteractor.AddComponent<XRRayInteractor>();
 				if (CurrentInteractor.GetComponent<LineRenderer>() == null) CurrentInteractor.AddComponent<LineRenderer>();
 				if (CurrentInteractor.GetComponent<XRInteractorLineVisual>() == null) CurrentInteractor.AddComponent<XRInteractorLineVisual>();
 			}

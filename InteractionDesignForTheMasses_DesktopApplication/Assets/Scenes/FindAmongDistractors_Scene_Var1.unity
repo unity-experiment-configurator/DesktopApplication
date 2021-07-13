@@ -401,6 +401,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: msh_LabelGoal_Mesh1
       objectReference: {fileID: 0}
+    - target: {fileID: 598655578338172439, guid: 45121522fc97645feb5335f96030005a, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 45121522fc97645feb5335f96030005a, type: 3}
 --- !u!4 &304930120 stripped
@@ -708,6 +712,10 @@ PrefabInstance:
     - target: {fileID: 4737227847528560748, guid: fd513e222294444c28e7d1c07f5a9b7e, type: 3}
       propertyPath: m_Name
       value: msh_LabelSource_Mesh1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4737227847528560748, guid: fd513e222294444c28e7d1c07f5a9b7e, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5401455378652685014, guid: fd513e222294444c28e7d1c07f5a9b7e, type: 3}
       propertyPath: m_RootOrder
@@ -1194,6 +1202,7 @@ MonoBehaviour:
   targetSoundPlaybackEvent: 
   targetSize: 0
   targetSizeMultiplier: 0.012
+  interactionType: 
   BackgroundAudioObject: {fileID: 248413863929940893, guid: 961b851964d600c40875dccd21cf043c, type: 3}
 --- !u!4 &1935550871
 Transform:
