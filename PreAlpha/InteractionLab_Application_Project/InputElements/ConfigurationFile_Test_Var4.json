@@ -1,0 +1,29 @@
+{
+	"experimentType": "FindTargetAmongstDistractorsExperiment",
+	"experimentTitle": "Test Configuration File 3",
+	"experimentAuthor": "Stelios Petrakos",
+	"experimentUID": "00000000000000",
+	"experimentCreationDate": "1 / 9 / 2021",
+	"experimentUpdateDate": "3 / 9 / 2021",
+	"experimentTrialCount": 5,
+	"experimentDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Sapien et ligula ullamcorper malesuada. Duis ultricies lacus sed turpis tincidunt id aliquet. Nunc sed id semper risus in hendrerit. Congue mauris rhoncus aenean vel elit scelerisque mauris pellentesque pulvinar. Est velit egestas dui id ornare arcu. Est velit egestas dui id ornare arcu. Mattis vulputate enim nulla aliquet porttitor lacus luctus accumsan. Mollis aliquam ut porttitor leo a diam sollicitudin tempor. Quisque sagittis purus sit amet volutpat. Sit amet tellus cras adipiscing enim eu turpis egestas pretium. Cursus metus aliquam eleifend mi in nulla posuere.",
+	"experimentInstructions": "Semper quis lectus nulla at volutpat diam. Ut lectus arcu bibendum at varius vel pharetra vel. Facilisis gravida neque convallis a. In dictum non consectetur a erat nam. Purus gravida quis blandit turpis cursus in hac. Eget est lorem ipsum dolor sit amet. Est ullamcorper eget nulla facilisi. Elementum integer enim neque volutpat. Id semper risus in hendrerit. Netus et malesuada fames ac turpis egestas integer eget aliquet. Molestie ac feugiat sed lectus vestibulum mattis ullamcorper velit. Mauris cursus mattis molestie a iaculis at erat pellentesque.",
+	"experimentURL":"",
+
+	"userMovement": false,
+	"userDirectGrab": true,
+	"userRayGrab": false,
+	
+	"environmentAudio": "AmbientTypeC",
+	"goalAudio": "Correct",
+	"distractorCount": 10,
+	"distractorSize": 1.0,
+	"distractorModels": ["Sphere","Cube"],
+	"distractorColours": ["Red","Blue"],
+	"targetSize": 1.0,
+	"targetModel": "Sphere",
+	"targetColour": "Red",
+	"targetConstantAudio": "",
+	"targetOnGrabAudio": "Ding",
+	"targetOnReleaseAudio": "False"
+}

@@ -1297,6 +1297,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a56e127ab69115449c5f530f4fc8bc8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1677443387 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1607399888660848504, guid: 0b943a62d81330242a8b6201bd19eea5,
+    type: 3}
+  m_PrefabInstance: {fileID: 1677443378}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a56e127ab69115449c5f530f4fc8bc8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2137223645
 GameObject:
   m_ObjectHideFlags: 0
@@ -1371,6 +1383,7 @@ MonoBehaviour:
   rightInteractionActivator: {fileID: 1677443385}
   movementControllerA: {fileID: 1677443386}
   movementControllerB: {fileID: 1677443384}
+  movementControllerC: {fileID: 1677443387}
   objectiveComplete: 0
 --- !u!4 &543450652974050014 stripped
 Transform:

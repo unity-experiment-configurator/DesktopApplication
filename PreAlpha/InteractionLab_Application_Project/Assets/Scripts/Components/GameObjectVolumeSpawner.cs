@@ -216,7 +216,7 @@ public class GameObjectVolumeSpawner : MonoBehaviour
 			{
 				for (int spawnGameObjectCount = 0; spawnGameObjectCount < currentDeterminedSpawnCount; spawnGameObjectCount++)
 				{
-					pickedGameObjectList.Add(gameObjectSampleList[UnityEngine.Random.Range(0, gameObjectSampleList.Count - 1)]);
+					pickedGameObjectList.Add(gameObjectSampleList[UnityEngine.Random.Range(0, gameObjectSampleList.Count)]);
 				}
 			}
 			else Debug.LogWarning("Could not pick game objects. The sample game object list is empty.");

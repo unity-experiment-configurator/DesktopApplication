@@ -34,7 +34,7 @@ public class FindTargetAmongstDistractorsSceneBehaviour : MonoBehaviour
 	public int distractorObjectSpawnCount;
 	public float distractorObjectTransformScale;
 	public List<GameObject> distrctorObjectGameObjectList;
-	public List<Material> distrctorObjectMaterialList;
+	public List<Material> distractorObjectMaterialList;
 
 	[Space(7)]
 	public float targetObjectTransformScale;
@@ -78,8 +78,11 @@ public class FindTargetAmongstDistractorsSceneBehaviour : MonoBehaviour
 	[Space(7)]
 	public VRDeviceObjectMovementController movementControllerA;
 	public VRDeviceObjectMovementController movementControllerB;
+	public VRDeviceObjectMovementController movementControllerC;
 
+	[Space(7)]
 	public bool objectiveComplete;
+	public bool perishedSimilar;
 
 	// Method to run tasks once at the earliest unity event.
 	void Awake()
@@ -159,6 +162,7 @@ public class FindTargetAmongstDistractorsSceneBehaviour : MonoBehaviour
 		{
 			movementControllerA.enabled = false;
 			movementControllerB.enabled = false;
+			movementControllerC.enabled = false;
 		}
 	}
 
@@ -179,6 +183,36 @@ public class FindTargetAmongstDistractorsSceneBehaviour : MonoBehaviour
 
 			if (experimentDatabaseComponent.currentExperimentTrialCount > 0) repeatExperimentSceneLoaderComponent.gameObject.SetActive(true);
 			else finishExperimentSceneLoaderComponent.gameObject.SetActive(true);
+		}
+	}
+
+	void LateUpdate()
+	{
+		if (!perishedSimilar)
+		{
+			GameObject curTargetGameObject = targetObjectGameObjectVolumeSpawnerComponent.transform.GetChild(0).gameObject;
+			List<GameObject> curDistractorGameObjectList = new List<GameObject>();
+
+			foreach (Transform curTra in distractorObjectGameObjectVolumeSpawnerComponent.GetComponentsInChildren<Transform>())
+			{
+				curDistractorGameObjectList.Add(curTra.gameObject);
+			}
+
+			foreach (GameObject curDistractorGameObject in curDistractorGameObjectList)
+			{
+				if (curDistractorGameObject.GetComponent<MeshFilter>() != null && curDistractorGameObject.GetComponent<Renderer>() != null)
+				{
+					while (curDistractorGameObject.GetComponent<MeshFilter>().sharedMesh == curTargetGameObject.GetComponent<MeshFilter>().sharedMesh
+						&& curDistractorGameObject.GetComponent<Renderer>().sharedMaterial == curTargetGameObject.GetComponent<Renderer>().sharedMaterial)
+					{
+						if (distractorObjectMaterialList.Count == 1) break;
+
+						curDistractorGameObject.GetComponent<Renderer>().sharedMaterial = distractorObjectMaterialList[UnityEngine.Random.Range(0, distractorObjectMaterialList.Count)];
+					}
+				}
+			}
+
+			perishedSimilar = true;
 		}
 	}
 
@@ -312,7 +346,7 @@ public class FindTargetAmongstDistractorsSceneBehaviour : MonoBehaviour
 		{
 			Material currentMaterial = experimentDatabaseComponent.materialDefinitionList.GetDefinedObjectByName(currentMaterialName);
 
-			if (currentMaterial != null) distrctorObjectMaterialList.Add(currentMaterial);
+			if (currentMaterial != null) distractorObjectMaterialList.Add(currentMaterial);
 		}
 
 		float.TryParse(experimentDatabaseComponent.experimentConstructionData.GetConfigurationDataLineByName("targetSize", false) // False so the json format is dropped.
@@ -535,8 +569,6 @@ public class FindTargetAmongstDistractorsSceneBehaviour : MonoBehaviour
 		distractorObjectGameObjectVolumeSpawnerComponent.spawnCountMinMax.max = distractorObjectSpawnCount;
 
 		distractorObjectGameObjectVolumeSpawnerComponent.gameObjectSampleList = distrctorObjectGameObjectList;
-		distractorObjectAssignMaterialToChildrenComponent.sampleMaterialList = distrctorObjectMaterialList;
-
-		
+		distractorObjectAssignMaterialToChildrenComponent.sampleMaterialList = distractorObjectMaterialList;
 	}
 }

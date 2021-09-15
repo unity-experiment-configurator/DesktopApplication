@@ -2645,7 +2645,7 @@ ScriptsOnlyBuild:
     className: KHRSimpleControllerProfile
   - hash:
       serializedVersion: 2
-      Hash: 2f647125affc20be7898b31bd1a31208
+      Hash: 02d44f2857dfc933d3b65622902eae9f
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: FindTargetAmongstDistractorsSceneBehaviour
@@ -3246,5 +3246,5 @@ ScriptsOnlyBuild:
   - Assets/Scenes/Test_Scenes/AudioInteractionTest_Scene_Var1.unity
   - Assets/Scenes/Test_Scenes/GameObjectDataCSVLogGeneratorTest_Scene_Var1.unity
   - Assets/Scenes/Test_Scenes/GoalTriggerGameObjectTest_Scene_Var1.unity
-  playerPath: C:/Users/Falxo/Projects/InteractionLab_Application_Project/Builds/InteractionLab_V2/Interaction
+  playerPath: C:/Users/Falxo/Projects/InteractionLab_Application_Project/Builds/InteractionLab_V3/Interaction
     Lab.exe

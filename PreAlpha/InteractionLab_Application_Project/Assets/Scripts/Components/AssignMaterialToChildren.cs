@@ -29,16 +29,16 @@ using UnityEngine;
 public class AssignMaterialToChildren : MonoBehaviour
 {
 	[Header("Material Assignment Options")]
-	public bool assignMaterialOnEnable = true;			// Condition to run the material assignment to the detected renderer upon enabling this component.
-	public ListItemSelection sampleMaterialSelection;	// Option to determine the game object sample spawning selection method.
-	public List<Material> sampleMaterialList;			// The material sample list to be used when deciding which material to be assigned to a child's renderer component.
+	public bool assignMaterialOnEnable = true;          // Condition to run the material assignment to the detected renderer upon enabling this component.
+	public ListItemSelection sampleMaterialSelection;   // Option to determine the game object sample spawning selection method.
+	public List<Material> sampleMaterialList;           // The material sample list to be used when deciding which material to be assigned to a child's renderer component.
 
 	[Header("Indications")]
-	public bool assignMaterialThisCycle;	// Indicator displaying if the material assignment to the detected renderer process will execute this coming cycle.
+	public bool assignMaterialThisCycle;    // Indicator displaying if the material assignment to the detected renderer process will execute this coming cycle.
 
 	[Space(7)]
-	public Renderer[] detectedRendererArray;	// List of detected renderer type components.
-	public List<Material> pickedMaterialList;	// List of materials picked to be spawned.
+	public Renderer[] detectedRendererArray;    // List of detected renderer type components.
+	public List<Material> pickedMaterialList;   // List of materials picked to be spawned.
 	public List<Material> assignedMaterialList; // List of materials already assigned.
 
 	// Method to run tasks upon enabling the component.
