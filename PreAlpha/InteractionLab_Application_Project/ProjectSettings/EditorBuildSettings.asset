@@ -1,0 +1,73 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1045 &1
+EditorBuildSettings:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/Interface_Scenes/ApplicationStartInterface_Scene_Var1.unity
+    guid: 2c22142dfca1e514292c2e1a65445149
+  - enabled: 1
+    path: Assets/Scenes/Interface_Scenes/ExperimentDescriptionInterface_Scene_Var1.unity
+    guid: ae720c2c857b1b24a8a5c1d8b940dc5e
+  - enabled: 1
+    path: Assets/Scenes/Interface_Scenes/ExperimentInstructionsInterface_Scene_Var1.unity
+    guid: cd442642f4a0cb74bb175713b1c31837
+  - enabled: 1
+    path: Assets/Scenes/Interface_Scenes/ExperimentStartCountDownInterface_Scene_Var1.unity
+    guid: 766d5d9bdc6850849b058293404fbe18
+  - enabled: 1
+    path: Assets/Scenes/Interface_Scenes/ExperimentEndInterface_Scene_Var1.unity
+    guid: f96b1f42e0004d94c8e9070ce0469176
+  - enabled: 1
+    path: Assets/Scenes/Experiment_Scenes/FindTargetAmongstDistractorsExperiment_Scene_Var1.unity
+    guid: bc6ab789bc35a7b408f4d647fb3b84f5
+  - enabled: 1
+    path: Assets/Scenes/Test_Scenes/SceneLoaderTest_Scene_Var1.unity
+    guid: c5718eed11f18b5448dae676dedf7627
+  - enabled: 1
+    path: Assets/Scenes/Test_Scenes/VRUserRigSetupTest_Scene_Var1.unity
+    guid: 75c3f8bc23f586d4aa991c23d83ffbe8
+  - enabled: 1
+    path: Assets/Scenes/Test_Scenes/ExperimentDatabaseTest_Scene_Var1.unity
+    guid: e958bede54114694ca2cffc839c1cb03
+  - enabled: 1
+    path: Assets/Scenes/Test_Scenes/GameObjectVolumeSpawnerTest_Scene_Var1.unity
+    guid: 28395ba4d71b34a47b4f26bcf3a76b48
+  - enabled: 1
+    path: Assets/Scenes/Test_Scenes/GrabSwitchesTest_Scene_Var1.unity
+    guid: 80a59275269301c41ac92f86100d06c6
+  - enabled: 1
+    path: Assets/Scenes/Test_Scenes/InteractableBasicShapesTest_Scene_Var1.unity
+    guid: 0a38ec465b7811b4ea4c25195efc9e55
+  - enabled: 1
+    path: Assets/Scenes/Test_Scenes/LitmusScaleColourMaterialTest_Scene_Var1.unity
+    guid: 006e5e573b42b2b4886df30a614816a8
+  - enabled: 1
+    path: Assets/Scenes/Test_Scenes/RigidBodyContainerStressTest_Scene_Var1.unity
+    guid: f794439e791fdfe4186b0db101ab499f
+  - enabled: 1
+    path: Assets/Scenes/Test_Scenes/VRDeviceToAnimationAssociationTest_Scene_Var1.unity
+    guid: ed5c5e58715332646aac40cefa5e67a9
+  - enabled: 1
+    path: Assets/Scenes/Test_Scenes/CountDownDisplayTest_Scene_Var1.unity
+    guid: 29fbb91ccaa9aa84b88e4f41c8866857
+  - enabled: 1
+    path: Assets/Scenes/Test_Scenes/AudioInteractionTest_Scene_Var1.unity
+    guid: 52a5fe4c52c4e0c41affbdd986a7e87e
+  - enabled: 1
+    path: Assets/Scenes/Test_Scenes/GameObjectDataCSVLogGeneratorTest_Scene_Var1.unity
+    guid: b993e105be4f263478bca612aa21f98c
+  - enabled: 1
+    path: Assets/Scenes/Test_Scenes/GoalTriggerGameObjectTest_Scene_Var1.unity
+    guid: 4c6989e6ffe93554eacd29c9a429c82d
+  m_configObjects:
+    Unity.XR.Oculus.Settings: {fileID: 11400000, guid: bfa1182bd221b4ca89619141f66f1260,
+      type: 2}
+    Unity.XR.WindowsMR.Settings: {fileID: 11400000, guid: dc5a169419fa04987b057f65238cf3ba,
+      type: 2}
+    com.unity.xr.management.loader_settings: {fileID: 11400000, guid: 1a4c68ca72a83449f938d669337cb305,
+      type: 2}
+    com.unity.xr.openxr.settings4: {fileID: 11400000, guid: ea38fa2c7be4cdd479ab77208bd3cda5,
+      type: 2}

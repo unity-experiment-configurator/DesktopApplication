@@ -1,0 +1,29 @@
+{
+	"experimentType": "FindTargetAmongstDistractorsExperiment",
+	"experimentTitle": "Test Configuration File 1",
+	"experimentAuthor": "Stelios Petrakos",
+	"experimentUID": "00000000000000",
+	"experimentCreationDate": "1 / 9 / 2021",
+	"experimentUpdateDate": "3 / 9 / 2021",
+	"experimentTrialCount": 3,
+	"experimentDescription": "<color=#FF000099>Test Configuration Experiment's Description</color>\n<color=#FFEB04FF>Test Configuration Experiment's Description</color>\n<color=#FFEB0499>Test Configuration Experiment's Description</color>\n<color=#FFEB044C>Test Configuration Experiment's Description</color>\n<color=#FF0000FF>D</color><color=#F0000EFF>E</color><color=#E2001CFF>S</color><color=#D4002AFF>C</color><color=#C60038FF>R</color><color=#B80046FF>I</color><color=#A90055FF>P</color><color=#9B0063FF>T</color><color=#8D0071FF>I</color><color=#7F007FFF>O</color><color=#71008DFF>N</color><color=#63009BFF>",
+	"experimentInstructions": "<color=#FF000099>Test Configuration Experiment's Instructions</color>\n<color=#FFEB04FF>Test Configuration Experiment's Instructions</color>\n<color=#FFEB0499>Test Configuration Experiment's Instructions</color>\n<color=#FFEB044C>Test Configuration Experiment's Instructions</color>\n<color=#FF0000FF>I</color><color=#F0000EFF>N</color><color=#E2001CFF>S</color><color=#D4002AFF>T</color><color=#C60038FF>R</color><color=#B80046FF>A</color><color=#A90055FF>C</color><color=#9B0063FF>T</color><color=#8D0071FF>I</color><color=#7F007FFF>O</color><color=#71008DFF>N</color><color=#63009BFF>S</color><color=#5400AAFF>",
+	"experimentURL":"",
+
+	"userMovement": true,
+	"userDirectGrab": true,
+	"userRayGrab": true,
+	
+	"environmentAudio": "CrowdChatter",
+	"goalAudio": "Correct",
+	"distractorCount": 30,
+	"distractorSize": 1.0,
+	"distractorModels": ["Capsule","Circle","Cone","Cube","Cylinder","Diamond","Hexagon","Octagon","Pentagon","Pipe","PlatonicSolid","Prism","Pyramid","Sphere","Square","Torus","Triangle"],
+	"distractorColours": ["Blue","Green","Orange","Red","Yellow"],
+	"targetSize": 1.0,
+	"targetModel": "Box",
+	"targetColour": "White",
+	"targetConstantAudio": "BeepTypeD",
+	"targetOnGrabAudio": "Ding",
+	"targetOnReleaseAudio": "False"
+}

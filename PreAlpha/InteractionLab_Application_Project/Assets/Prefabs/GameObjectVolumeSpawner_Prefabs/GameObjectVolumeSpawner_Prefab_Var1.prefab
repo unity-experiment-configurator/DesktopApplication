@@ -1,0 +1,127 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1755236014999232687
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1755236014999232681}
+  - component: {fileID: 1755236014999232683}
+  - component: {fileID: 1755236014999232686}
+  - component: {fileID: 1755236014999232680}
+  m_Layer: 0
+  m_Name: GameObjectVolumeSpawner_Prefab_Var1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1755236014999232681
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1755236014999232687}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1755236014999232683
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1755236014999232687}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6f17f9a690fca340a8d400065645238, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  visualisationBoundsEnabled: 1
+  visualisationBoundsColour: {r: 0, g: 1, b: 0, a: 0.5}
+  visualisationBoundsAdditionalClearance: {x: 0, y: 0, z: 0}
+  generateContainerCollidersOnEnbale: 1
+  sizeDimensions: {x: 1, y: 0.2, z: 1}
+  centreOffset: {x: 0, y: 0, z: 0}
+  colliderPhysicMaterial: {fileID: 0}
+  colliderWallThickness: 0.1
+  containerExistanceTimeFrame: 1
+  containerExistanceTime: 3
+  currentContainerDestructionTimer: 0
+  currentGeneratedColliderArray: []
+--- !u!114 &1755236014999232686
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1755236014999232687}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f82add8eec295e445a5d93337289980a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  visualisationBoundsEnabled: 1
+  visualisationBoundsColour: {r: 1, g: 0, b: 0, a: 0.5}
+  visualisationBoundsAdditionalClearance: {x: 0.1, y: 0.1, z: 0.1}
+  spawnOnEnable: 1
+  destroyPreviousOnSpawn: 1
+  spawnCountMinMax:
+    min: 15
+    max: 20
+  transformationsMin:
+    position: {x: -0.4, y: -0.1, z: -0.4}
+    rotation: {x: -180, y: -180, z: -180}
+    scale: {x: 0.5, y: 0.5, z: 0.5}
+  transformationsMax:
+    position: {x: 0.4, y: 0.1, z: 0.4}
+    rotation: {x: 180, y: 180, z: 180}
+    scale: {x: 2, y: 2, z: 2}
+  keepScaleUniform: 1
+  sampleGameObjectSelection: 2
+  gameObjectSampleList: []
+  currentDeterminedSpawnCount: 0
+  currentMaxSizeGameObjectBounds:
+    m_Center: {x: 0, y: 0, z: 0}
+    m_Extent: {x: 0.08660254, y: 0.08660254, z: 0.08660254}
+  currentMaxScaledGameObjectBounds:
+    m_Center: {x: 0, y: 0, z: 0}
+    m_Extent: {x: 0.017320508, y: 0.017320508, z: 0.017320508}
+  currentEstimatedPositionBounds:
+    m_Center: {x: 0, y: 0, z: 0}
+    m_Extent: {x: 0.4, y: 0.1, z: 0.4}
+  currentEstimatedVolumeBounds:
+    m_Center: {x: 0, y: 0, z: 0}
+    m_Extent: {x: 0.41732052, y: 0.11732051, z: 0.41732052}
+  currentEstimatedClearanceBounds:
+    m_Center: {x: 0, y: 0, z: 0}
+    m_Extent: {x: 0.46732053, y: 0.1673205, z: 0.46732053}
+  pickedGameObjectList: []
+  spawnedGameObjectList: []
+--- !u!114 &1755236014999232680
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1755236014999232687}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad2072b572bc2a841b7f7fc0fb29b539, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  assignMaterialOnEnable: 1
+  sampleMaterialSelection: 0
+  sampleMaterialList: []
+  assignMaterialThisCycle: 0
+  detectedRendererArray: []
+  pickedMaterialList: []
+  assignedMaterialList: []

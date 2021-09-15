@@ -1,0 +1,29 @@
+{
+	"experimentType": "FindTargetAmongstDistractorsExperiment",
+	"experimentTitle": "Test Configuration File 2",
+	"experimentAuthor": "Stelios Petrakos",
+	"experimentUID": "00000000000000",
+	"experimentCreationDate": "1 / 9 / 2021",
+	"experimentUpdateDate": "3 / 9 / 2021",
+	"experimentTrialCount": 5,
+	"experimentDescription": "<color=#FF0000>Test Configuration Experiment's Description In Red. Test Configuration Experiment's Description In Red. Test Configuration Experiment's Description In Red. Test Configuration Experiment's Description In Red. Test Configuration Experiment's Description In Red. Test Configuration Experiment's Description In Red. Test Configuration Experiment's Description In Red. Test Configuration Experiment's Description In Red. Test Configuration Experiment's Description In Red. Test Configuration Experiment's Description In Red. Test Configuration Experiment's Description In Red. Test Configuration Experiment's Description In Red.</color>",
+	"experimentInstructions": "<color=#00FF00>Test Configuration Experiment's Instructions In Green. Test Configuration Experiment's Instructions In Green. Test Configuration Experiment's Instructions In Green. Test Configuration Experiment's Instructions In Green. Test Configuration Experiment's Instructions In Green. Test Configuration Experiment's Instructions In Green. Test Configuration Experiment's Instructions In Green. Test Configuration Experiment's Instructions In Green. Test Configuration Experiment's Instructions In Green. Test Configuration Experiment's Instructions In Green. Test Configuration Experiment's Instructions In Green. Test Configuration Experiment's Instructions In Green. </color>",
+	"experimentURL":"",
+
+	"userMovement": true,
+	"userDirectGrab": false,
+	"userRayGrab": true,
+	
+	"environmentAudio": "BusyStreet",
+	"goalAudio": "DoubleBeep",
+	"distractorCount": 10,
+	"distractorSize": 0.5,
+	"distractorModels": ["Cube"],
+	"distractorColours": ["White"],
+	"targetSize": 0.5,
+	"targetModel": "Sphere",
+	"targetColour": "Yellow",
+	"targetConstantAudio": "PhoneRing",
+	"targetOnGrabAudio": "CorrectTypeI",
+	"targetOnReleaseAudio": "FalseTypeF"
+}

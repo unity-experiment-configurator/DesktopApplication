@@ -1,0 +1,29 @@
+{
+	"experimentType": "",
+	"experimentTitle": "",
+	"experimentAuthor": "",
+	"experimentUID": "",
+	"experimentCreationDate": "",
+	"experimentUpdateDate": "",
+	"experimentTrialCount": 0,
+	"experimentDescription": "",
+	"experimentInstructions": "",
+	"experimentURL":"",
+
+	"userAllowMove": true,
+	"userAllowDirectGrab": true,
+	"userAllowRayGrab": true,
+	
+	"environmentAudio": "",
+	"goalAudio": "",
+	"distractorCount": 0,
+	"distractorSize": 0.0,
+	"distractorModels": ["","",""],
+	"distractorColours": ["","",""],
+	"targetSize": 0.0,
+	"targetModel": "",
+	"targetColour": "",
+	"targetConstantAudio": "",
+	"targetOnGrabAudio": "",
+	"targetOnReleaseAudio": ""
+}

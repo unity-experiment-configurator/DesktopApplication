@@ -1,0 +1,18 @@
+-----------------------------------------------------------------------------
+
+Project:
+		Interaction Lab Application.
+
+Copyright (C) Mnemoscene LTD.
+All Rights Reserved.
+
+File:
+		${FileName}
+
+Date:
+		${Date}
+
+Description: 
+	
+
+-----------------------------------------------------------------------------
